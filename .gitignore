@@ -1,6 +1,9 @@
 *.class
 .idea
+<<<<<<< HEAD
 .out
+=======
+>>>>>>> 671567730d448796a5585164473488e71b95e113
 *.xml
 *.in
 *.out
@@ -15,3 +18,9 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+<<<<<<< HEAD
+=======
+
+Semwork/out/
+sem_1/
+>>>>>>> 671567730d448796a5585164473488e71b95e113
