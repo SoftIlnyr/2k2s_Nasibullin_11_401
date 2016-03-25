@@ -1,5 +1,6 @@
 package ru.kpfu.itis.Ilnyr_Nasibullin.Repositories;
 
+import ru.kpfu.itis.Ilnyr_Nasibullin.Aspects.MyConnection;
 import ru.kpfu.itis.Ilnyr_Nasibullin.Models.User;
 
 import java.math.BigInteger;

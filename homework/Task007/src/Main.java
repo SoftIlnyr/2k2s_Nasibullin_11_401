@@ -21,6 +21,7 @@ public class Main {
         f1.addWarship(h1);
         f1.addWarship(j1);
         f1.addWarship(n1);
+        f1.addWarship(q1);
         f1.fullAttackTarget(d1);
         f1.fullMoveToPoint(10, 3);
     }
