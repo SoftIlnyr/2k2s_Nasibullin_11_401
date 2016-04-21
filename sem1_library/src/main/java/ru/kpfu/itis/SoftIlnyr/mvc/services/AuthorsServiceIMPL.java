@@ -2,6 +2,7 @@ package ru.kpfu.itis.SoftIlnyr.mvc.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import ru.kpfu.itis.SoftIlnyr.mvc.entities.Author;
 import ru.kpfu.itis.SoftIlnyr.mvc.repositories.AuthorsRepository;
 
@@ -10,8 +11,8 @@ import java.util.List;
 /**
  * Created by softi on 18.04.2016.
  */
+@Service
 public class AuthorsServiceIMPL implements AuthorsService {
-
     @Autowired
     AuthorsRepository authorsRepository;
 

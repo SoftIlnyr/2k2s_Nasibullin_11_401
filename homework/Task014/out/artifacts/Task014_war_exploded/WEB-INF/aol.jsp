@@ -16,6 +16,5 @@
     <input type="text" name="q">
     <input type="submit" value="AOL">
 </form>
-"
 </body>
 </html>

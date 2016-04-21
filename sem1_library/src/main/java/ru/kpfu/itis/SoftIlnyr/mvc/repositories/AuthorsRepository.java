@@ -9,5 +9,7 @@ import java.util.List;
 /**
  * Created by softi on 18.04.2016.
  */
+@Repository
 public interface AuthorsRepository extends CrudRepository<Author, Long>{
+    public Iterable<Author> findAll();
 }
