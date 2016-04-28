@@ -1,12 +1,13 @@
 package ru.kpfu.itis.SoftIlnyr.mvc.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by softi on 18.04.2016.
  */
 @Entity
-@Table(name = "books")
+@Table(name = "books", schema = "public", catalog = "legistis_libro")
 public class Book {
     private int id;
     private String title;
@@ -15,8 +16,14 @@ public class Book {
     private String language;
     private int rating;
     private String image;
+    private Author author;
+    private String info;
+    private List<Presence> presence;
+    private List<Talon> talons;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "book_id_secuence")
+    @SequenceGenerator(name = "book_id_secuence", sequenceName = "books_id_seq", allocationSize = 1)
     @Column(name = "id")
     public int getId() {
         return id;
@@ -86,6 +93,34 @@ public class Book {
         this.image = image;
     }
 
+    @ManyToOne(targetEntity = Author.class)
+    @JoinColumn(name = "author_id", referencedColumnName = "id")
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    @OneToMany(targetEntity = Presence.class, mappedBy = "book", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    public List<Presence> getPresence() {
+        return presence;
+    }
+
+    public void setPresence(List<Presence> presence) {
+        this.presence = presence;
+    }
+
+    @OneToMany(targetEntity = Talon.class, mappedBy = "book", fetch = FetchType.EAGER)
+    public List<Talon> getTalons() {
+        return talons;
+    }
+
+    public void setTalons(List<Talon> talons) {
+        this.talons = talons;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -114,5 +149,15 @@ public class Book {
         result = 31 * result + rating;
         result = 31 * result + (image != null ? image.hashCode() : 0);
         return result;
+    }
+
+    @Basic
+    @Column(name = "info")
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
     }
 }

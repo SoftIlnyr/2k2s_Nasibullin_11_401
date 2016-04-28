@@ -22,5 +22,7 @@ hs_err_pid*
 =======
 
 Semwork/out/
+sem1_library/src/main/resources/
+sem1_library/target/
 sem_1/
 >>>>>>> 671567730d448796a5585164473488e71b95e113

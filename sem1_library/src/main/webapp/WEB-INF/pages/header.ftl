@@ -1,93 +1,72 @@
-<div class="row header"><!-- Begin Header -->
-
-    <!-- Logo
-    ================================================== -->
-    <div class="span5 logo">
-        <h1>Legistis Libro</h1>
-    </div>
-
-    <!-- Main Navigation
-    ================================================== -->
-    <div class="span7 navigation">
-        <div class="navbar hidden-phone">
-
-            <ul class="nav">
-                <li class="dropdown active">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="index.htm">Главная<b class="caret"></b></a>
+<header class="main-header">
+    <!-- Logo -->
+    <a href="/test" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini"><b>L</b>LIB</span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg"><b>Legistis</b>LIBRO</span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top" role="navigation">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <!-- User Account: style can be found in dropdown.less -->
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                        <span class="hidden-xs">Alexander Pierce</span>
+                    </a>
                     <ul class="dropdown-menu">
-                        <li><a href="index.htm">Главная</a></li>
-                        <li><a href="index-gallery.htm">Книги</a></li>
-                        <li><a href="index-slider.htm">Писатели</a></li>
+                        <!-- User image -->
+                        <li class="user-header">
+                            <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                            <p>
+                                Alexander Pierce - Web Developer
+                                <small>Member since Nov. 2012</small>
+                            </p>
+                        </li>
+                        <!-- Menu Body -->
+                        <li class="user-body">
+                            <div class="col-xs-6 text-center">
+                                <a href="#">Мои книги</a>
+                            </div>
+                            <div class="col-xs-6 text-center">
+                                <a href="#">Рецензии</a>
+                            </div>
+                        </li>
+                        <li class="user-body">
+                            <div class="col-xs-6 text-center">
+                                <a href="/login">Вход</a>
+                            </div>
+                            <div class="col-xs-6 text-center">
+                                <a href="/registration">Регистрация</a>
+                            </div>
+                        </li>
+                        <!-- Menu Footer-->
+                        <li class="user-footer">
+                            <div class="pull-left">
+                                <a href="#" class="btn btn-default btn-flat">Профиль</a>
+                            </div>
+                            <div class="pull-right">
+                                <a href="#" class="btn btn-default btn-flat">Выход</a>
+                            </div>
+                        </li>
                     </ul>
                 </li>
-                <li><a href="features.htm">Features</a></li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="page-full-width.htm">Pages <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="page-full-width.htm">Full Width</a></li>
-                        <li><a href="page-right-sidebar.htm">Right Sidebar</a></li>
-                        <li><a href="page-left-sidebar.htm">Left Sidebar</a></li>
-                        <li><a href="page-double-sidebar.htm">Double Sidebar</a></li>
-                    </ul>
+                <!-- Control Sidebar Toggle Button -->
+                <li>
+                    <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
                 </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="gallery-4col.htm">Gallery <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="gallery-3col.htm">Gallery 3 Column</a></li>
-                        <li><a href="gallery-4col.htm">Gallery 4 Column</a></li>
-                        <li><a href="gallery-6col.htm">Gallery 6 Column</a></li>
-                        <li><a href="gallery-4col-circle.htm">Gallery 4 Round</a></li>
-                        <li><a href="gallery-single.htm">Gallery Single</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="blog-style1.htm">Blog <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="blog-style1.htm">Blog Style 1</a></li>
-                        <li><a href="blog-style2.htm">Blog Style 2</a></li>
-                        <li><a href="blog-style3.htm">Blog Style 3</a></li>
-                        <li><a href="blog-style4.htm">Blog Style 4</a></li>
-                        <li><a href="blog-single.htm">Blog Single</a></li>
-                    </ul>
-                </li>
-                <li><a href="page-contact.htm">Contact</a></li>
             </ul>
-
         </div>
+    </nav>
+</header>
 
-        <!-- Mobile Nav
-      ================================================== -->
-        <form action="#" id="mobile-nav" class="visible-phone">
-            <div class="mobile-nav-select">
-                <select onchange="window.open(this.options[this.selectedIndex].value,'_top')">
-                    <option value="">Navigate...</option>
-                    <option value="index.htm">Home</option>
-                    <option value="index.htm">- Full Page</option>
-                    <option value="index-gallery.htm">- Gallery Only</option>
-                    <option value="index-slider.htm">- Slider Only</option>
-                    <option value="features.htm">Features</option>
-                    <option value="page-full-width.htm">Pages</option>
-                    <option value="page-full-width.htm">- Full Width</option>
-                    <option value="page-right-sidebar.htm">- Right Sidebar</option>
-                    <option value="page-left-sidebar.htm">- Left Sidebar</option>
-                    <option value="page-double-sidebar.htm">- Double Sidebar</option>
-                    <option value="gallery-4col.htm">Gallery</option>
-                    <option value="gallery-3col.htm">- 3 Column</option>
-                    <option value="gallery-4col.htm">- 4 Column</option>
-                    <option value="gallery-6col.htm">- 6 Column</option>
-                    <option value="gallery-4col-circle.htm">- Gallery 4 Col Round</option>
-                    <option value="gallery-single.htm">- Gallery Single</option>
-                    <option value="blog-style1.htm">Blog</option>
-                    <option value="blog-style1.htm">- Blog Style 1</option>
-                    <option value="blog-style2.htm">- Blog Style 2</option>
-                    <option value="blog-style3.htm">- Blog Style 3</option>
-                    <option value="blog-style4.htm">- Blog Style 4</option>
-                    <option value="blog-single.htm">- Blog Single</option>
-                    <option value="page-contact.htm">Contact</option>
-                </select>
-            </div>
-        </form>
-
-    </div>
-
-</div><!-- End Header -->
+<!-- =============================================== -->

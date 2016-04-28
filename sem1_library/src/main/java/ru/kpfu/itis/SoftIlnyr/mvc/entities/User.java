@@ -1,12 +1,13 @@
 package ru.kpfu.itis.SoftIlnyr.mvc.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by softi on 18.04.2016.
  */
 @Entity
-@Table(name = "users")
+@Table(name = "users", schema = "public", catalog = "legistis_libro")
 public class User {
     private int id;
     private String nickname;
@@ -18,8 +19,12 @@ public class User {
     private String avatar;
     private boolean manager;
     private boolean admin;
+    private String email;
+    private List<Talon> talons;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_secuence")
+    @SequenceGenerator(name = "user_id_secuence", sequenceName = "users_id_seq", allocationSize = 1)
     @Column(name = "id")
     public int getId() {
         return id;
@@ -119,6 +124,15 @@ public class User {
         this.admin = admin;
     }
 
+    @OneToMany(targetEntity = Talon.class, mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    public List<Talon> getTalons() {
+        return talons;
+    }
+
+    public void setTalons(List<Talon> talons) {
+        this.talons = talons;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -153,5 +167,15 @@ public class User {
         result = 31 * result + (manager ? 1 : 0);
         result = 31 * result + (admin ? 1 : 0);
         return result;
+    }
+
+    @Basic
+    @Column(name = "email")
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

@@ -6,7 +6,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
-          <factory-entry name="myEmf" value="dataSource" />
+          <factory-entry name="myEmf" value="f155e9fe-b227-4423-b593-f11f29c8925b" />
           <factory-entry name="noname-a.xml@0" value="f155e9fe-b227-4423-b593-f11f29c8925b" />
           <factory-entry name="persistenceUnit" value="dataSource" />
         </datasource-mapping>
@@ -52,6 +52,8 @@
     <orderEntry type="library" name="JPA 1.0-JPA 1.0" level="project" />
     <orderEntry type="library" name="html5" level="application" />
     <orderEntry type="library" name="jquery-1.8.3" level="application" />
+    <orderEntry type="library" name="html5shiv" level="application" />
+    <orderEntry type="library" name="respond" level="application" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context-support:4.0.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-beans:4.0.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-core:4.0.2.RELEASE" level="project" />
@@ -89,5 +91,7 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet.jsp:jsp-api:2.1" level="project" />
     <orderEntry type="library" name="Maven: org.freemarker:freemarker:2.3.24-incubating" level="project" />
     <orderEntry type="library" name="Maven: postgresql:postgresql:9.1-901-1.jdbc4" level="project" />
+    <orderEntry type="library" name="Maven: commons-io:commons-io:2.2" level="project" />
+    <orderEntry type="library" name="Maven: commons-fileupload:commons-fileupload:1.2.1" level="project" />
   </component>
 </module>

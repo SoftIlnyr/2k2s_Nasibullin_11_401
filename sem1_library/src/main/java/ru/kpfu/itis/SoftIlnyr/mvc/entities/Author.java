@@ -1,19 +1,24 @@
 package ru.kpfu.itis.SoftIlnyr.mvc.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by softi on 18.04.2016.
  */
 @Entity
-@Table(name = "authors")
+@Table(name = "authors", schema = "public", catalog = "legistis_libro")
 public class Author {
     private int id;
-    private String firstName;
-    private String lastName;
+    private String name;
     private String photo;
+    private String surname;
+    private String info;
+    private List<Book> books;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "author_id_secuence")
+    @SequenceGenerator(name = "author_id_secuence", sequenceName = "authors_id_seq", allocationSize = 1)
     @Column(name = "id")
     public int getId() {
         return id;
@@ -24,23 +29,13 @@ public class Author {
     }
 
     @Basic
-    @Column(name = "first_name")
-    public String getFirstName() {
-        return firstName;
+    @Column(name = "name")
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    @Basic
-    @Column(name = "last_name")
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Basic
@@ -53,6 +48,36 @@ public class Author {
         this.photo = photo;
     }
 
+    @Basic
+    @Column(name = "surname")
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    @Basic
+    @Column(name = "info")
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
+
+    @OneToMany(targetEntity = Book.class, mappedBy = "author", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -61,9 +86,10 @@ public class Author {
         Author author = (Author) o;
 
         if (id != author.id) return false;
-        if (firstName != null ? !firstName.equals(author.firstName) : author.firstName != null) return false;
-        if (lastName != null ? !lastName.equals(author.lastName) : author.lastName != null) return false;
+        if (name != null ? !name.equals(author.name) : author.name != null) return false;
         if (photo != null ? !photo.equals(author.photo) : author.photo != null) return false;
+        if (surname != null ? !surname.equals(author.surname) : author.surname != null) return false;
+        if (info != null ? !info.equals(author.info) : author.info != null) return false;
 
         return true;
     }
@@ -71,9 +97,10 @@ public class Author {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
-        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (photo != null ? photo.hashCode() : 0);
+        result = 31 * result + (surname != null ? surname.hashCode() : 0);
+        result = 31 * result + (info != null ? info.hashCode() : 0);
         return result;
     }
 }
