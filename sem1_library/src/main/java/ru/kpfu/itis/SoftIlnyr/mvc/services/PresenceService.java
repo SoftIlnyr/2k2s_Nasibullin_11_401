@@ -14,4 +14,6 @@ public interface PresenceService {
     List<Presence> findAll();
 
     void addPresence(Presence presence);
+
+    void update(Presence presence);
 }

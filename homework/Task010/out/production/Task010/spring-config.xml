@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="biggun" class="main.BigGun">
+        <constructor-arg index="0" value="205"/>
+        <constructor-arg index="1" value="1200"/>
+        <constructor-arg index="2" value="1500"/>
+    </bean>
+
+    <bean id="midgun" class="main.MidGun">
+        <constructor-arg index="0" value="120"/>
+        <constructor-arg index="1" value="600"/>
+        <constructor-arg index="2" value="500"/>
+    </bean>
+
+    <bean id="plane" class="main.Plane">
+        <constructor-arg index="0" value="Hawataka"/>
+        <constructor-arg index="1" value="500"/>
+        <constructor-arg index="2" value="10"/>
+        <constructor-arg index="3" value="200"/>
+    </bean>
+
+    <bean id="torpedo" class="main.Torpedo">
+        <constructor-arg index="0" value="chemical"/>
+        <constructor-arg index="1" value="1000"/>
+        <constructor-arg index="2" value="10000"/>
+    </bean>
+
+    <bean id="mine" class="main.Mine">
+        <constructor-arg index="0" value="5000"/>
+        <constructor-arg index="1" value="60"/>
+        <constructor-arg index="2" value="250"/>
+    </bean>
+
+    <bean id="destroyer" class="main.Destroyer">
+        <constructor-arg index="0" value="Terminator"/>
+        <constructor-arg index="1" value="10000"/>
+        <constructor-arg index="2" value="40"/>
+        <constructor-arg index="3">
+            <list>
+                <ref bean="torpedo"></ref>
+                <ref bean="torpedo"></ref>
+                <ref bean="torpedo"></ref>
+            </list>
+
+        </constructor-arg>
+    </bean>
+
+    <bean id="epic" class="main.EpicMachine">
+        <constructor-arg index="0" value="King 40000"/>
+        <constructor-arg index="1" value="10000"/>
+        <constructor-arg index="2">
+            <list>
+                <ref bean="biggun"></ref>
+                <ref bean="biggun"></ref>
+                <ref bean="biggun"></ref>
+            </list>
+        </constructor-arg>
+    </bean>
+    
+    <bean id="helicarier" class="main.Helicarier">
+        <constructor-arg index="0" value="Shield"/>
+        <constructor-arg index="1" value="5000"/>
+        <constructor-arg index="2">
+            <list>
+                <ref bean="plane"></ref>
+                <ref bean="plane"></ref>
+                <ref bean="plane"></ref>
+                <ref bean="plane"></ref>
+                <ref bean="plane"></ref>
+                <ref bean="plane"></ref>
+            </list>
+        </constructor-arg>
+    </bean>
+    
+    <bean id="jackdaw" class="main.Jackdaw">
+        <constructor-arg index="0" value="Assassin"/>
+        <constructor-arg index="1" value="1500"/>
+        <constructor-arg index="2">
+            <list>
+                <ref bean="midgun"></ref>
+                <ref bean="midgun"></ref>
+                <ref bean="midgun"></ref>
+                <ref bean="midgun"></ref>
+            </list>
+        </constructor-arg>
+    </bean>
+    
+    <bean id="nautilus" class="main.Nautilus">
+        <constructor-arg index="0" value="Nemo"/>
+        <constructor-arg index="1">
+            <list>
+                <ref bean="mine"></ref>
+                <ref bean="mine"></ref>
+                <ref bean="mine"></ref>
+                <ref bean="mine"></ref>
+                <ref bean="mine"></ref>
+            </list>
+        </constructor-arg>
+        <constructor-arg index="2" value="4000"/>
+        <constructor-arg index="3" value="60"/>
+    </bean>
+    
+    <bean id="qav" class="main.QueenAnnVengeance">
+        <constructor-arg index="0" value="Black"/>
+        <constructor-arg index="1" value="6666"/>
+        <constructor-arg index="2">
+            <list>
+                <ref bean="biggun"></ref>
+                <ref bean="biggun"></ref>
+            </list>
+        </constructor-arg>
+    </bean>
+    
+    <bean id="fleet" class="main.Fleet">
+        <constructor-arg index="0" value="Warhammer"/>
+        <constructor-arg index="1">
+            <list>
+                <ref bean="destroyer"></ref>
+                <ref bean="epic"></ref>
+                <ref bean="jackdaw"></ref>
+                <ref bean="jackdaw"></ref>
+                <ref bean="helicarier"></ref>
+                <ref bean="nautilus"></ref>
+                <ref bean="qav"></ref>
+            </list>
+        </constructor-arg>
+    </bean>
+
+
+</beans>

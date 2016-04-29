@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="n1" class="ComplexNumber">
+
+    </bean>
+
+    <bean id="n2" class="ComplexNumber">
+        <property name="realPart" value="0"></property>
+        <property name="imaginaryPart" value="1"></property>
+    </bean>
+
+    <bean id="n0" class="ComplexNumber">
+        <property name="realPart" value="-5"></property>
+        <property name="imaginaryPart" value="1"></property>
+    </bean>
+
+    <bean id="cn1" class="ComplexNumber">
+        <property name="realPart" value="1"></property>
+        <property name="imaginaryPart" value="2"></property>
+    </bean>
+
+    <bean id="cn2" class="ComplexNumber">
+        <property name="realPart" value="3"/>
+        <property name="imaginaryPart" value="-4"/>
+    </bean>
+
+    <bean id="cn3" class="ComplexNumber">
+        <property name="realPart" value="-5"></property>
+        <property name="imaginaryPart" value="6"></property>
+    </bean>
+
+    <bean id="cn4" class="ComplexNumber">
+        <property name="realPart" value="-7"></property>
+        <property name="imaginaryPart" value="-8"></property>
+    </bean>
+
+    <bean id="cm1" class="ComplexMatrix2x2">
+        <constructor-arg name="complexNumber" ref="n0"></constructor-arg>
+    </bean>
+
+    <bean id="cm2" class="ComplexMatrix2x2">
+        <constructor-arg name="number1" ref="cn1"></constructor-arg>
+        <constructor-arg name="number2" ref="cn2"></constructor-arg>
+        <constructor-arg name="number3" ref="cn3"></constructor-arg>
+        <constructor-arg name="number4" ref="cn4"></constructor-arg>
+    </bean>
+</beans>
