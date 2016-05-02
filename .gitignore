@@ -6,6 +6,12 @@
 >>>>>>> 671567730d448796a5585164473488e71b95e113
 *.in
 *.out
+*.jpeg
+*.jpg
+*.png
+
+
+
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/

@@ -20,44 +20,55 @@
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                        <span class="hidden-xs">Alexander Pierce</span>
+                    <#if user?exists>
+                        <img src="/resources/uploads/user_images/854653099.jpeg" class="user-image" alt="User Image">
+                        <span class="hidden-xs">${user.nickname}</span>
+                    <#else >
+                        <img src="/resources/uploads/user_images/default.jpg" class="user-image" alt="User Image">
+                        <span class="hidden-xs">Анонимный пользователь</span>
+                    </#if>
+
                     </a>
                     <ul class="dropdown-menu">
+                    <#if user?exists>
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                            <img src="/resources/uploads/user_images/854653099.jpeg" class="img-circle"
+                                 alt="User Image">
                             <p>
-                                Alexander Pierce - Web Developer
-                                <small>Member since Nov. 2012</small>
+                            ${user.firstName} ${user.surname}
                             </p>
                         </li>
-                        <!-- Menu Body -->
-                        <li class="user-body">
-                            <div class="col-xs-6 text-center">
-                                <a href="#">Мои книги</a>
-                            </div>
-                            <div class="col-xs-6 text-center">
-                                <a href="#">Рецензии</a>
-                            </div>
+                    <#else >
+                        <li class="user-header">
+                            <img src="/resources/uploads/user_images/default.jpg" class="img-circle"
+                                 alt="User Image">
+                            <p>
+                                Анонимный пользователь
+                            </p>
                         </li>
-                        <li class="user-body">
-                            <div class="col-xs-6 text-center">
-                                <a href="/login">Вход</a>
-                            </div>
-                            <div class="col-xs-6 text-center">
-                                <a href="/registration">Регистрация</a>
-                            </div>
-                        </li>
+                    </#if>
+
                         <!-- Menu Footer-->
+                    <#if user?exists>
                         <li class="user-footer">
                             <div class="pull-left">
                                 <a href="#" class="btn btn-default btn-flat">Профиль</a>
                             </div>
                             <div class="pull-right">
-                                <a href="#" class="btn btn-default btn-flat">Выход</a>
+                                <a href="/logout" class="btn btn-default btn-flat">Выход</a>
                             </div>
                         </li>
+                    <#else >
+                        <li class="user-footer">
+                            <div class="pull-left">
+                                <a href="/login" class="btn btn-default btn-flat">Вход</a>
+                            </div>
+                            <div class="pull-right">
+                                <a href="/registration" class="btn btn-default btn-flat">Регистрация</a>
+                            </div>
+                        </li>
+                    </#if>
                     </ul>
                 </li>
                 <!-- Control Sidebar Toggle Button -->

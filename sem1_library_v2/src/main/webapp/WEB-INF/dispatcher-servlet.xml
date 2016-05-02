@@ -9,6 +9,10 @@
     <context:component-scan base-package="ru.kpfu.itis.SoftIlnyr.mvc.services"/>
     <mvc:annotation-driven />
     <mvc:resources mapping="/resources/**" location="/resources/"/>
+    <mvc:interceptors>
+        <bean class="ru.kpfu.itis.SoftIlnyr.mvc.controllers.UserInfoHandler"/>
+
+    </mvc:interceptors>
 
     <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
         <property name="templateLoaderPath" value="/WEB-INF/pages"/>

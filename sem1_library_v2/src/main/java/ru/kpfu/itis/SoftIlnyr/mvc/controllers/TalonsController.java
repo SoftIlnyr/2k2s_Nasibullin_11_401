@@ -98,7 +98,6 @@ public class TalonsController {
                 }
             }
             talon.setStatus(status);
-
         } else if ("returned".equals(status.toLowerCase())) {
             for (Presence presence : talon.getLibrary().getPresence()) {
                 if (presence.getBook() == talon.getBook()) {

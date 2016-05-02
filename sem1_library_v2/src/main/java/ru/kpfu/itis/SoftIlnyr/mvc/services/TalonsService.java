@@ -12,7 +12,6 @@ public interface TalonsService {
 
     void add(Talon talon);
 
-
     List<Talon> findAll();
 
     Talon findById(int talon_id);

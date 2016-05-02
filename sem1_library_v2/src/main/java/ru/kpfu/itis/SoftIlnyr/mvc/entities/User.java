@@ -17,9 +17,8 @@ public class User {
     private String surname;
     private int rating;
     private String avatar;
-    private boolean manager;
-    private boolean admin;
     private String email;
+    private String role;
     private List<Talon> talons;
 
     @Id
@@ -105,23 +104,13 @@ public class User {
     }
 
     @Basic
-    @Column(name = "manager")
-    public boolean isManager() {
-        return manager;
+    @Column(name = "role")
+    public String getRole() {
+        return role;
     }
 
-    public void setManager(boolean manager) {
-        this.manager = manager;
-    }
-
-    @Basic
-    @Column(name = "admin")
-    public boolean isAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(boolean admin) {
-        this.admin = admin;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @OneToMany(targetEntity = Talon.class, mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -142,8 +131,6 @@ public class User {
 
         if (id != user.id) return false;
         if (rating != user.rating) return false;
-        if (manager != user.manager) return false;
-        if (admin != user.admin) return false;
         if (nickname != null ? !nickname.equals(user.nickname) : user.nickname != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
         if (firstName != null ? !firstName.equals(user.firstName) : user.firstName != null) return false;
@@ -164,8 +151,6 @@ public class User {
         result = 31 * result + (surname != null ? surname.hashCode() : 0);
         result = 31 * result + rating;
         result = 31 * result + (avatar != null ? avatar.hashCode() : 0);
-        result = 31 * result + (manager ? 1 : 0);
-        result = 31 * result + (admin ? 1 : 0);
         return result;
     }
 

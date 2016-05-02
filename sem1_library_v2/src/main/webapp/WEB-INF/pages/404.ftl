@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>LLIB | Вход</title>
+    <title>LLIB | 404</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -35,62 +35,40 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Вход
-                <small>мы давно Вас ждем!</small>
+                Ошибка 404
             </h1>
         </section>
 
         <!-- Main content -->
         <section class="content">
-            <!-- Horizontal Form -->
-            <div class="box box-info">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Введите данные для входа</h3>
-                </div><!-- /.box-header -->
-                <!-- form start -->
-                <form class="form-horizontal" action="/login" method="post">
-                    <div class="box-body">
-                        <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-2 control-label">Nickname:</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" placeholder="Введите никнейм" name="nickname">
+            <div class="error-page">
+                <h2 class="headline text-yellow"> 404</h2>
+                <div class="error-content">
+                    <h3><i class="fa fa-warning text-yellow"></i> Упс! Страница не найдена!</h3>
+                    <p>
+                        Лучше перейди  <a href="/test">на главную</a> иди воспользуйся формой поиска
+                    </p>
+                    <form class="search-form">
+                        <div class="input-group">
+                            <input type="text" name="search" class="form-control" placeholder="Поиск">
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn btn-warning btn-flat"><i class="fa fa-search"></i></button>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Пароль:</label>
-                            <div class="col-sm-10">
-                                <input type="password" class="form-control" name="password" placeholder="Введите пароль">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember_me"> Запомнить меня
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- /.box-body -->
-                    <div class="box-footer">
-                        <button type="submit" class="btn btn-default">Отмена</button>
-                        <button type="submit" class="btn btn-info pull-right">Вход</button>
-                    </div><!-- /.box-footer -->
-                </form>
-            </div><!-- /.box -->
-
-
+                        </div><!-- /.input-group -->
+                    </form>
+                    <p>P.S.: не уверен, что она работает)</p>
+                </div><!-- /.error-content -->
+            </div><!-- /.error-page -->
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->
 
-    <#include "footer.ftl">
 
+<#include "footer.ftl">
     <!-- Control Sidebar -->
-    <#include "control_sidebar.ftl">
+<#include "control_sidebar.ftl">
     <!-- /.control-sidebar -->
     <!-- Add the sidebar's background. This div must be placed
          immediately after the control sidebar -->

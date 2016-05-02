@@ -16,4 +16,6 @@ public interface UsersService {
     void update(User user);
 
     List<User> findAll();
+
+    User findByNickname(String name);
 }

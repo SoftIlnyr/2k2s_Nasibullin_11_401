@@ -2,6 +2,7 @@ package ru.kpfu.itis.SoftIlnyr.mvc.controllers;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,8 @@ public class UsersController {
     @Autowired
     private ServletContext servletContext;
 
+    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(ModelMap modelMap) {
         return "/login";
@@ -41,15 +44,15 @@ public class UsersController {
                                    @RequestParam String password, @RequestParam String email,
                                    @RequestParam MultipartFile avatar) throws IOException {
         User user = new User();
-        user.setAdmin(false);
-        user.setManager(false);
         user.setNickname(nickname);
         user.setFirstName(first_name);
         user.setLastName(last_name);
         user.setSurname(surname);
-        user.setPassword(password);
+        String cryptPassword = encoder.encode(password);
+        user.setPassword(cryptPassword);
         user.setRating(0);
         user.setEmail(email);
+        user.setRole("ROLE_SIMPLE");
 
         if (!avatar.isEmpty()) {
             String filename = saveImage(avatar);

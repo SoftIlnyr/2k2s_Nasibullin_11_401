@@ -34,4 +34,9 @@ public class UsersServiceIMPL implements UsersService {
     public List<User> findAll() {
         return (List<User>) usersRepository.findAll();
     }
+
+    @Override
+    public User findByNickname(String name) {
+        return usersRepository.findByNickname(name);
+    }
 }
