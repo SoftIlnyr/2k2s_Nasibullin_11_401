@@ -2,6 +2,8 @@ package ru.kpfu.itis.SoftIlnyr.mvc.controllers;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import ru.kpfu.itis.SoftIlnyr.mvc.entities.Author;
 import ru.kpfu.itis.SoftIlnyr.mvc.entities.Book;
-import ru.kpfu.itis.SoftIlnyr.mvc.services.AuthorsService;
+import ru.kpfu.itis.SoftIlnyr.mvc.services.INTERFACES.AuthorsService;
 
 import javax.servlet.ServletContext;
 import java.io.File;
@@ -47,7 +49,7 @@ public class AuthorsController {
         if (!image.isEmpty()) {
             String filename = saveImage(image);
             author.setPhoto(filename);
-        }  else {
+        } else {
             author.setPhoto("default.jpg");
         }
 
@@ -55,7 +57,6 @@ public class AuthorsController {
 
         return "redirect:/tables/authors";
     }
-
 
     @RequestMapping(value = "/authors/{author_id:\\d+}", method = RequestMethod.GET)
     public String authorPage(ModelMap modelMap, @PathVariable int author_id) {

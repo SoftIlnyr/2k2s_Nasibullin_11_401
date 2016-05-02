@@ -15,12 +15,20 @@
                              username-parameter="nickname"
                              password-parameter="password"
                              always-use-default-target="true"
+                             authentication-success-handler-ref="authSuccess"
         />
         <security:logout logout-url="/logout" logout-success-url="/test" delete-cookies="JSESSIONID"/>
         <security:intercept-url pattern="/tables/**" access="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')"/>
-        <security:remember-me key="uniqueAndSecret" token-validity-seconds="3600" remember-me-parameter="remember_me"/>
+        <security:intercept-url pattern="/authors/**" method="POST" access="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')"/>
+        <security:intercept-url pattern="/books/**" method="POST" access="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')"/>
+        <security:intercept-url pattern="/libraries/**" method="POST" access="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')"/>
+        <security:intercept-url pattern="/talons/**" method="POST" access="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')"/>
+        <security:intercept-url pattern="/users/**" method="POST" access="hasAnyRole('ROLE_ADMIN')"/>
+        <security:anonymous username="guest" granted-authority="ROLE_ANON"/>
+        <!--<security:remember-me key="uniqueAndSecret" tok en-validity-seconds="3600" remember-me-parameter="remember_me"/>-->
     </security:http>
 
+    <security:global-method-security secured-annotations="enabled" pre-post-annotations="enabled"/>
 
     <security:authentication-manager>
         <security:authentication-provider ref="authProvider">
@@ -31,6 +39,6 @@
         </security:authentication-provider>
     </security:authentication-manager>
 
-    <bean id="authProvider" class="ru.kpfu.itis.SoftIlnyr.mvc.services.AuthProviderIMPL"/>
-
+    <bean id="authProvider" class="ru.kpfu.itis.SoftIlnyr.mvc.security.AuthProviderIMPL"/>
+    <bean id="authSuccess" class="ru.kpfu.itis.SoftIlnyr.mvc.security.MyAuthSuccess"/>
 </beans>

@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ru.kpfu.itis.SoftIlnyr.mvc.entities.Book;
 import ru.kpfu.itis.SoftIlnyr.mvc.entities.Library;
 import ru.kpfu.itis.SoftIlnyr.mvc.entities.Presence;
-import ru.kpfu.itis.SoftIlnyr.mvc.services.BooksService;
-import ru.kpfu.itis.SoftIlnyr.mvc.services.LibrariesService;
-import ru.kpfu.itis.SoftIlnyr.mvc.services.PresenceService;
+import ru.kpfu.itis.SoftIlnyr.mvc.services.INTERFACES.BooksService;
+import ru.kpfu.itis.SoftIlnyr.mvc.services.INTERFACES.LibrariesService;
+import ru.kpfu.itis.SoftIlnyr.mvc.services.INTERFACES.PresenceService;
 
 /**
  * Created by softi on 27.04.2016.

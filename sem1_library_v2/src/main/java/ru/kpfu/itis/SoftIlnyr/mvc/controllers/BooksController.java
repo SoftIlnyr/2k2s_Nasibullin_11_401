@@ -12,9 +12,8 @@ import org.springframework.web.multipart.MultipartFile;
 import ru.kpfu.itis.SoftIlnyr.mvc.entities.Author;
 import ru.kpfu.itis.SoftIlnyr.mvc.entities.Book;
 import ru.kpfu.itis.SoftIlnyr.mvc.entities.Presence;
-import ru.kpfu.itis.SoftIlnyr.mvc.services.AuthorsService;
-import ru.kpfu.itis.SoftIlnyr.mvc.services.BooksService;
-import ru.kpfu.itis.SoftIlnyr.mvc.services.PresenceService;
+import ru.kpfu.itis.SoftIlnyr.mvc.services.INTERFACES.AuthorsService;
+import ru.kpfu.itis.SoftIlnyr.mvc.services.INTERFACES.BooksService;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;

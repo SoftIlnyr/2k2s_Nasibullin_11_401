@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.kpfu.itis.SoftIlnyr.mvc.entities.Library;
-import ru.kpfu.itis.SoftIlnyr.mvc.services.LibrariesService;
+import ru.kpfu.itis.SoftIlnyr.mvc.services.INTERFACES.LibrariesService;
 
 /**
  * Created by softi on 23.04.2016.

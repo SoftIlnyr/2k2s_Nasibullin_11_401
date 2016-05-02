@@ -104,7 +104,6 @@ public class User {
     }
 
     @Basic
-    @Column(name = "role")
     public String getRole() {
         return role;
     }

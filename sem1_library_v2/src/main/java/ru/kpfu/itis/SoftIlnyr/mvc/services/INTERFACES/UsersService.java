@@ -1,4 +1,4 @@
-package ru.kpfu.itis.SoftIlnyr.mvc.services;
+package ru.kpfu.itis.SoftIlnyr.mvc.services.INTERFACES;
 
 import ru.kpfu.itis.SoftIlnyr.mvc.entities.User;
 

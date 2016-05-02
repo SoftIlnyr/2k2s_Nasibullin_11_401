@@ -21,7 +21,7 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <#if user?exists>
-                        <img src="/resources/uploads/user_images/854653099.jpeg" class="user-image" alt="User Image">
+                        <img src="/resources/uploads/user_images/${user.avatar}" class="user-image" alt="User Image">
                         <span class="hidden-xs">${user.nickname}</span>
                     <#else >
                         <img src="/resources/uploads/user_images/default.jpg" class="user-image" alt="User Image">
@@ -33,11 +33,12 @@
                     <#if user?exists>
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="/resources/uploads/user_images/854653099.jpeg" class="img-circle"
+                            <img src="/resources/uploads/user_images/${user.avatar}" class="img-circle"
                                  alt="User Image">
                             <p>
                             ${user.firstName} ${user.surname}
                             </p>
+                            <small>${user.role}</small>
                         </li>
                     <#else >
                         <li class="user-header">
@@ -53,7 +54,7 @@
                     <#if user?exists>
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Профиль</a>
+                                <a href="/users/${user.id}" class="btn btn-default btn-flat">Профиль</a>
                             </div>
                             <div class="pull-right">
                                 <a href="/logout" class="btn btn-default btn-flat">Выход</a>
@@ -79,5 +80,3 @@
         </div>
     </nav>
 </header>
-
-<!-- =============================================== -->

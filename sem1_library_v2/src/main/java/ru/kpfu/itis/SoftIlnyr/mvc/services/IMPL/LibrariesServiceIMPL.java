@@ -1,10 +1,11 @@
-package ru.kpfu.itis.SoftIlnyr.mvc.services;
+package ru.kpfu.itis.SoftIlnyr.mvc.services.IMPL;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.kpfu.itis.SoftIlnyr.mvc.entities.Library;
 import ru.kpfu.itis.SoftIlnyr.mvc.repositories.LibrariesRepository;
+import ru.kpfu.itis.SoftIlnyr.mvc.services.INTERFACES.LibrariesService;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class LibrariesServiceIMPL implements LibrariesService{
+public class LibrariesServiceIMPL implements LibrariesService {
 
     @Autowired
     LibrariesRepository librariesRepository;

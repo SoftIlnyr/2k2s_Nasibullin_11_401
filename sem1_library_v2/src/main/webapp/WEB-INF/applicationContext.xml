@@ -11,6 +11,7 @@
 
     <import resource="persistance-config.xml"/>
     <import resource="security-config.xml"/>
+    <mvc:annotation-driven/>
 
     <context:component-scan base-package="ru.kpfu.itis.SoftIlnyr.mvc"/>
     <jpa:repositories base-package="ru.kpfu.itis.SoftIlnyr.mvc.repositories"/>

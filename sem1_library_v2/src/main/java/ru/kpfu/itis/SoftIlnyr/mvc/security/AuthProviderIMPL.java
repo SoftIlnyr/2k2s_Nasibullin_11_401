@@ -1,4 +1,4 @@
-package ru.kpfu.itis.SoftIlnyr.mvc.services;
+package ru.kpfu.itis.SoftIlnyr.mvc.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
