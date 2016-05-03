@@ -29,7 +29,7 @@
 <!-- Site wrapper -->
 <div class="wrapper">
 
-
+<#assign security=JspTaglibs["http://www.springframework.org/security/tags"] />
 <#include "header.ftl">
 <#include "left_column.ftl">
 
@@ -50,7 +50,10 @@
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#info" data-toggle="tab">Информация</a></li>
+                        <@security.authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')">
+
                             <li><a href="#settings" data-toggle="tab">Редактировать</a></li>
+                        </@security.authorize>
                         </ul>
                         <div class="tab-content">
                             <div class="active tab-pane" id="info">
@@ -74,9 +77,13 @@
 
                             </div><!-- /.tab-pane -->
 
+
+                        <@security.authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')">
+
                             <div class="tab-pane" id="settings">
 
-                                <form class="form-horizontal" enctype="multipart/form-data" action="/authors/${author.id}"
+                                <form class="form-horizontal" enctype="multipart/form-data"
+                                      action="/authors/${author.id}"
                                       method="POST">
                                     <div class="box-body">
                                         <div class="form-group">
@@ -112,11 +119,13 @@
                                         </div>
                                     </div><!-- /.box-body -->
                                     <div class="box-footer">
-                                        <button class="btn btn-default"><a href="/authors/${author.id}/delete">Удалить</a></button>
+                                        <button class="btn btn-default"><a
+                                                href="/authors/${author.id}/delete">Удалить</a></button>
                                         <button type="submit" class="btn btn-info pull-right">Редактировать</button>
                                     </div><!-- /.box-footer -->
                                 </form>
                             </div><!-- /.tab-pane -->
+                        </@security.authorize>
                         </div><!-- /.tab-content -->
 
                     </div><!-- /.nav-tabs-custom -->
@@ -131,8 +140,8 @@
                         <div class="box-body">
                             <div class='col-sm-4'>
                                 <a href="/books/${book.id}">
-                                <img class='img-responsive img-bordered-sm'
-                                     src='/resources/uploads/book_images/${book.image}' alt='Photo'></a>
+                                    <img class='img-responsive img-bordered-sm'
+                                         src='/resources/uploads/book_images/${book.image}' alt='Photo'></a>
                             </div>
                             <div class="col-sm-8">
                                 <p style="white-space: pre-line">${book.info}</p>

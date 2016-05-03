@@ -19,6 +19,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.List;
 
 /**
@@ -111,10 +112,15 @@ public class BooksController {
     }
 
     @RequestMapping(value = "/books/{book_id:\\d+}/{library_id:\\d+}", method = RequestMethod.GET)
-    public String talonSendInfo(HttpServletRequest request, @PathVariable int book_id, @PathVariable int library_id) {
-        request.setAttribute("book_id", book_id);
-        request.setAttribute("library_id", library_id);
-        return "forward:/talons/order";
+    public String talonSendInfo(HttpServletRequest request, @PathVariable int book_id, @PathVariable int library_id, Principal principal) {
+        if (principal != null) {
+            request.setAttribute("book_id", book_id);
+            request.setAttribute("library_id", library_id);
+            return "forward:/talons/order";
+        } else {
+            return "redirect:/login";
+        }
+
     }
 
     @RequestMapping(value = "/books/{book_id:\\d+}/delete", method = RequestMethod.GET)

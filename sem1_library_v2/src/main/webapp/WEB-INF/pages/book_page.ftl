@@ -29,7 +29,7 @@
 <!-- Site wrapper -->
 <div class="wrapper">
 
-
+<#assign security=JspTaglibs["http://www.springframework.org/security/tags"] />
 <#include "header.ftl">
 <#include "left_column.ftl">
 
@@ -39,7 +39,7 @@
         <section class="content-header">
             <h1>
             ${book.title}
-                <small> <a href="/authors/${book.author.id}">${book.author.name} ${book.author.surname}</a></small>
+                <small><a href="/authors/${book.author.id}">${book.author.name} ${book.author.surname}</a></small>
             </h1>
         </section>
 
@@ -51,7 +51,10 @@
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#info" data-toggle="tab">Информация</a></li>
+                        <@security.authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')">
+
                             <li><a href="#settings" data-toggle="tab">Редактировать</a></li>
+                        </@security.authorize>
                         </ul>
                         <div class="tab-content">
                             <div class="active tab-pane" id="info">
@@ -87,7 +90,8 @@
                                                             <td>${p.library.name}</td>
                                                             <td>${p.library.address}</td>
                                                             <td>${p.amount}</td>
-                                                            <td><a href="/books/${book.id}/${p.library.id}" id><i class="fa fa-book"></i> </a> </td>
+                                                            <td><a href="/books/${book.id}/${p.library.id}" id><i
+                                                                    class="fa fa-book"></i> </a></td>
                                                         </tr>
                                                         </#list>
                                                         </tbody>
@@ -112,6 +116,8 @@
                                     <input class="form-control input-sm" type="text" placeholder="Type a comment">
                                 </div><!-- /.post -->
                             </div><!-- /.tab-pane -->
+                        <@security.authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')">
+
                             <div class="tab-pane" id="settings">
 
                                 <form class="form-horizontal" enctype="multipart/form-data" action="/books/${book.id}"
@@ -155,16 +161,17 @@
                                                 <select class="form-control select2" style="width: 100%;" name="author">
                                                     <option selected="selected">${book.author.id}
                                                         - ${book.author.name} ${book.author.surname}</option>
-                                                <#list authors as author>
-                                                    <option>${author.id} - ${author.name} ${author.surname}</option>
-                                                </#list>
+                                                    <#list authors as author>
+                                                        <option>${author.id} - ${author.name} ${author.surname}</option>
+                                                    </#list>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Информация:</label>
                                             <div class="col-sm-10">
-                                <textarea class="form-control" rows="10" name="info" placeholder="Информация" style="white-space: pre-line">${book.info}
+                                <textarea class="form-control" rows="10" name="info" placeholder="Информация"
+                                          style="white-space: pre-line">${book.info}
                                 </textarea>
                                             </div>
                                         </div>
@@ -177,11 +184,14 @@
                                         </div>
                                     </div><!-- /.box-body -->
                                     <div class="box-footer">
-                                        <button class="btn btn-default"><a href="/books/${book.id}/delete">Удалить</a></button>
+                                        <button class="btn btn-default"><a href="/books/${book.id}/delete">Удалить</a>
+                                        </button>
                                         <button type="submit" class="btn btn-info pull-right">Редактировать</button>
                                     </div><!-- /.box-footer -->
                                 </form>
                             </div><!-- /.tab-pane -->
+                        </@security.authorize>
+
                         </div><!-- /.tab-content -->
                     </div><!-- /.nav-tabs-custom -->
                 </div><!-- /.col -->

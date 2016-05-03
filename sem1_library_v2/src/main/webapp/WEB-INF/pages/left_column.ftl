@@ -1,3 +1,5 @@
+<#assign security=JspTaglibs["http://www.springframework.org/security/tags"] />
+
 <!-- Left side column. contains the sidebar -->
 <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
@@ -7,7 +9,8 @@
             <div class="input-group">
                 <input type="text" name="q" class="form-control" placeholder="Поиск...">
               <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i
+                        class="fa fa-search"></i></button>
               </span>
             </div>
         </form>
@@ -27,6 +30,8 @@
                     <li><a href="#"><i class="fa fa-circle-o"></i> Получить книгу</a></li>
                 </ul>
             </li>
+        <@security.authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')">
+
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-table"></i> <span>Таблицы</span>
@@ -41,6 +46,7 @@
                     <li><a href="/tables/presences"><i class="fa fa-circle-o"></i> Книги в наличии</a></li>
                 </ul>
             </li>
+        </@security.authorize>
         </ul>
     </section>
     <!-- /.sidebar -->

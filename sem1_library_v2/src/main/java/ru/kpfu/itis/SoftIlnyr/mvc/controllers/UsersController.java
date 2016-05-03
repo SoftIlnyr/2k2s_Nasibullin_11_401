@@ -4,6 +4,7 @@ import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -85,10 +86,50 @@ public class UsersController {
         return "/user_table";
     }
 
+    @RequestMapping(value = "/tables/users/{user_id:\\d+}", method = RequestMethod.POST)
+    public String userUpdatePage(@PathVariable int user_id, @RequestParam String nickname, @RequestParam String first_name,
+                                 @RequestParam String last_name, @RequestParam String surname,
+                                 @RequestParam String password, @RequestParam String email,
+                                 @RequestParam MultipartFile avatar, @RequestParam String role, Principal principal) throws IOException {
+        if (principal != null) {
+            User principal1 = (User) ((Authentication) principal).getPrincipal();
+            if ("ROLE_ADMIN".equals(principal1.getRole()) || principal1 == usersService.findById(user_id)) {
+                User user = usersService.findById(user_id);
+                user.setNickname(nickname);
+                user.setFirstName(first_name);
+                user.setLastName(last_name);
+                user.setSurname(surname);
+                if (!"".equals(password.trim())) {
+                    String cryptPassword = encoder.encode(password);
+                    user.setPassword(cryptPassword);
+                }
+                user.setEmail(email);
+                user.setRole(role);
+
+                if (!avatar.isEmpty()) {
+                    String filename = saveImage(avatar);
+                    user.setAvatar(filename);
+                }
+
+                usersService.update(user);
+                return "redirect:/users/" + user_id;
+            }
+        }
+        return "redirect:/403";
+    }
+
     @RequestMapping(value = "/users/{user_id:\\d+}", method = RequestMethod.GET)
-    public String userPage(ModelMap modelMap, @PathVariable int user_id) {
+    public String userPage(ModelMap modelMap, @PathVariable int user_id, Principal principal) {
+        boolean access = false;
+        if (principal != null) {
+            User pUser = (User) ((Authentication) principal).getPrincipal();
+            if (pUser.getId() == user_id || "ROLE_ADMIN".equals(pUser.getRole())) {
+                access = true;
+            }
+        }
         User user = usersService.findById(user_id);
         modelMap.put("userinfo", user);
+        modelMap.put("access", access);
         modelMap.put("talons", user.getTalons());
         return "/user_page";
     }

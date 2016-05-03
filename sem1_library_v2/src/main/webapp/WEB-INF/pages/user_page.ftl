@@ -29,6 +29,7 @@
 <!-- Site wrapper -->
 <div class="wrapper">
 
+<#assign security=JspTaglibs["http://www.springframework.org/security/tags"] />
 
 <#include "header.ftl">
 <#include "left_column.ftl">
@@ -50,7 +51,7 @@
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#info" data-toggle="tab">Информация</a></li>
-                            <li><a href="#settings" data-toggle="tab">Редактировать</a></li>
+                            <#if access><li><a href="#settings" data-toggle="tab">Редактировать</a></li></#if>
                         </ul>
                         <div class="tab-content">
                             <div class="active tab-pane" id="info">
@@ -110,23 +111,26 @@
                                 </div><!-- /.post -->
 
                             </div><!-- /.tab-pane -->
-
+                        <#if access>
                             <div class="tab-pane" id="settings">
 
-                                <form class="form-horizontal" enctype="multipart/form-data" action="/registration" method="POST">
+                                <form class="form-horizontal" enctype="multipart/form-data"
+                                      action="/tables/users/${userinfo.id}" method="POST">
                                     <div class="box-body">
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Имя на сайте:</label>
                                             <div class="col-sm-10">
                                                 <input type="text" class="form-control" name="nickname"
-                                                       placeholder="Придумайте свой никнейм" value="${userinfo.nickname}">
+                                                       placeholder="Придумайте свой никнейм"
+                                                       value="${userinfo.nickname}">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Email:</label>
                                             <div class="col-sm-10">
                                                 <input type="email" class="form-control" name="email"
-                                                       placeholder="Введите адрес своего электронного почтового ящика" value="${userinfo.email}">
+                                                       placeholder="Введите адрес своего электронного почтового ящика"
+                                                       value="${userinfo.email}">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -140,7 +144,8 @@
                                             <label class="col-sm-2 control-label">Второе имя:</label>
                                             <div class="col-sm-10">
                                                 <input type="text" class="form-control" name="last_name"
-                                                       placeholder="Введите свое второе имя (необязательно)" value="${userinfo.lastName}">
+                                                       placeholder="Введите свое второе имя (необязательно)"
+                                                       value="${userinfo.lastName}">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -169,15 +174,30 @@
                                             <div class="col-sm-10">
                                                 <input type="file" name="avatar">
                                             </div>
-
                                         </div>
+                                        <@security.authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')">
+
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Роль:</label>
+                                                <div class="col-sm-10">
+                                                    <select class="form-control select2" style="width: 100%;"
+                                                            name="role">
+                                                        <option selected="selected">${userinfo.role}</option>
+                                                        <option>ROLE_ADMIN</option>
+                                                        <option>ROLE_MANAGER</option>
+                                                        <option>ROLE_SIMPLE</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </@security.authorize>
                                     </div><!-- /.box-body -->
                                     <div class="box-footer">
                                         <button class="btn btn-default">Отмена</button>
-                                        <button type="submit" class="btn btn-primary pull-right">Регистрация</button>
+                                        <button type="submit" class="btn btn-primary pull-right">Редактировать</button>
                                     </div><!-- /.box-footer -->
                                 </form>
                             </div><!-- /.tab-pane -->
+                        </#if>
                         </div><!-- /.tab-content -->
 
                     </div><!-- /.nav-tabs-custom -->
