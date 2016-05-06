@@ -1,6 +1,12 @@
 package ru.kpfu.itis.SoftIlnyr.mvc.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,11 +14,13 @@ import java.util.List;
  */
 @Entity
 @Table(name = "libraries", schema = "public", catalog = "legistis_libro")
-public class Library {
+public class Library{
     private int id;
     private String address;
     private String name;
+    @JsonIgnore
     private List<Presence> presence;
+    @JsonIgnore
     private List<Talon> talons;
 
     @Id

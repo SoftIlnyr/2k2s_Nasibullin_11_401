@@ -1,15 +1,20 @@
 package ru.kpfu.itis.SoftIlnyr.mvc.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by softi on 18.04.2016.
  */
 @Entity
 @Table(name = "books_libraries", schema = "public", catalog = "legistis_libro")
-public class Presence {
+public class Presence{
     private int amount;
     private Book book;
+    @JsonManagedReference
     private Library library;
     private int id;
 

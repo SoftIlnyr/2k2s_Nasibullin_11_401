@@ -11,7 +11,7 @@ import ru.kpfu.itis.SoftIlnyr.mvc.services.INTERFACES.UsersService;
 /**
  * Created by softi on 02.05.2016.
  */
-//@Component
+@Component
 public class MyUserDetailesService implements UserDetailsService {
 
     @Autowired
@@ -21,8 +21,8 @@ public class MyUserDetailesService implements UserDetailsService {
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         User user = usersService.findByNickname(s);
         if (user == null) {
-            throw new UsernameNotFoundException("User with name " + s + " no found");
+            throw new UsernameNotFoundException("User with name " + s + " not found");
         }
-        return new MyUserDetailes(user);
+        return user;
     }
 }

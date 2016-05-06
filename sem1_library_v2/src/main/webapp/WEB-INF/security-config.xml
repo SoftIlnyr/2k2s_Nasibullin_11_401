@@ -22,10 +22,12 @@
         <security:intercept-url pattern="/authors/**" method="POST" access="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')"/>
         <security:intercept-url pattern="/books/**" method="POST" access="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')"/>
         <security:intercept-url pattern="/libraries/**" method="POST" access="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')"/>
+        <security:intercept-url pattern="/talons/order/**" method="POST" access="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_SIMPLE')"/>
         <security:intercept-url pattern="/talons/**" method="POST" access="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')"/>
         <security:intercept-url pattern="/users/**" method="POST" access="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_SIMPLE')"/>
         <security:anonymous username="guest" granted-authority="ROLE_ANON"/>
-        <!--<security:remember-me key="uniqueAndSecret" tok en-validity-seconds="3600" remember-me-parameter="remember_me"/>-->
+        <!--<security:csrf/>-->
+        <security:remember-me key="uniqueAndSecret" token-validity-seconds="3600" remember-me-parameter="remember_me" data-source-ref="dataSource"/>
     </security:http>
 
     <security:global-method-security secured-annotations="enabled" pre-post-annotations="enabled"/>

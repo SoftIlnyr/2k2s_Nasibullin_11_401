@@ -1,6 +1,12 @@
 package ru.kpfu.itis.SoftIlnyr.mvc.entities;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -8,7 +14,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "users", schema = "public", catalog = "legistis_libro")
-public class User {
+public class User implements UserDetails{
     private int id;
     private String nickname;
     private String password;
@@ -43,10 +49,48 @@ public class User {
         this.nickname = nickname;
     }
 
+    @Override
+    @Transient
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
+        grantedAuthorities.add(new SimpleGrantedAuthority(this.getRole()));
+        return grantedAuthorities;
+    }
+
     @Basic
     @Column(name = "password")
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    @Transient
+    public String getUsername() {
+        return nickname;
+    }
+
+    @Override
+    @Transient
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    @Transient
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    @Transient
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    @Transient
+    public boolean isEnabled() {
+        return true;
     }
 
     public void setPassword(String password) {

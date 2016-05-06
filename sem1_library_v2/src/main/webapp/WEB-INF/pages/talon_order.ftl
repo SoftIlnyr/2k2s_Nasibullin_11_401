@@ -23,6 +23,7 @@
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script src="/resources/js/MyScripts.js"/>
     <![endif]-->
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -38,7 +39,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Заказать книгу ${book.title}
+                Заказать книгу
             </h1>
         </section>
 
@@ -62,19 +63,23 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Книга:</label>
                             <div class="col-sm-10">
-                                <select class="form-control select2" style="width: 100%;" name="book">
-                                    <option selected="selected">${book.id} - ${book.title} </option>
+                                <select id="book" onchange="findPresences()" class="form-control select2" style="width: 100%;" name="book">
+                                    <option  selected="selected" ><#if book?exists>${book.id}
+                                        - ${book.title}</#if></option>
+                                <#list books as book>
+                                    <option>${book.id} - ${book.title}</option>
+                                </#list>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Библиотека:</label>
                             <div class="col-sm-10">
-                                <select class="form-control select2" style="width: 100%;" name="library">
-                                    <option selected="selected">${prLib.id} - ${prLib.name}</option>
-                                <#list libraries as library>
-                                    <option>${library.id} - ${library.name} </option>
-                                </#list>
+                                <select class="form-control select2" style="width: 100%;" name="library" id="libraries">
+                                    <option selected="selected"><#if prLib?exists>${prLib.id} - ${prLib.name}</#if></option>
+                                <#--<#list libraries as library>-->
+                                <#--<option>${library.id} - ${library.name} </option>-->
+                                <#--</#list>-->
                                 </select>
                             </div>
                         </div>
@@ -119,6 +124,7 @@
 <script src="/resources/dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/resources/dist/js/demo.js"></script>
+<script src="/resources/js/MyScripts.js"></script>
 <!-- page script -->
 <script>
     $(function () {

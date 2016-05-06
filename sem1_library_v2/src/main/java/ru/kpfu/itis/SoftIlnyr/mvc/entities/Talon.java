@@ -1,5 +1,7 @@
 package ru.kpfu.itis.SoftIlnyr.mvc.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 
 /**
@@ -12,6 +14,7 @@ public class Talon {
     private int period;
     private String status;
     private Book book;
+    @JsonManagedReference
     private Library library;
     private User user;
 

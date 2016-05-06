@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import ru.kpfu.itis.SoftIlnyr.mvc.entities.*;
 import ru.kpfu.itis.SoftIlnyr.mvc.services.INTERFACES.*;
 
@@ -48,20 +45,42 @@ public class TalonsController {
     @RequestMapping(value = "/talons/order", method = RequestMethod.GET)
     public String talonForm(HttpServletRequest request, ModelMap modelMap) {
         Integer book_id = (Integer) request.getAttribute("book_id");
-        Book book = booksService.findById(book_id);
-
-        Integer library_id = (Integer) request.getAttribute("library_id");
-        Library prechosedLibrary = librariesService.findById(library_id);
-        List<Library> libraries = new ArrayList<Library>();
-        for (Presence presence : book.getPresence()) {
-            libraries.add(presence.getLibrary());
+        Book book = null;
+        if (book_id != null) {
+            book = booksService.findById(book_id);
         }
 
+        Integer library_id = (Integer) request.getAttribute("library_id");
+        Library prechosedLibrary = null;
+        if (library_id != null) {
+            prechosedLibrary = librariesService.findById(library_id);
+        }
+//        List<Library> libraries = new ArrayList<Library>();
+//        for (Presence presence : book.getPresence()) {
+//            libraries.add(presence.getLibrary());
+//        }
+
+        List<Book> books = booksService.findAll();
+        modelMap.put("books", books);
         modelMap.put("book", book);
         modelMap.put("prLib", prechosedLibrary);
-        modelMap.put("libraries", libraries);
+//        modelMap.put("libraries", libraries);
 
         return "talon_order";
+    }
+
+    @RequestMapping(value = "/talons/order/libraries", method = RequestMethod.POST)
+    public @ResponseBody List<Library> getPresences(@RequestBody String bookinfo) {
+        String book_id = bookinfo.replace("\"", "").split(" ")[0];
+        Book book = booksService.findById(Integer.parseInt(book_id));
+        List<Library> libraries = new ArrayList<>();
+        for (Presence presence : book.getPresence()) {
+            Library library = presence.getLibrary();
+            if (!libraries.contains(library)) {
+                libraries.add(library);
+            }
+        }
+        return libraries;
     }
 
     @RequestMapping(value = "/talons/order", method = RequestMethod.POST)
