@@ -4,14 +4,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.AbstractController;
 import ru.kpfu.itis.SoftIlnyr.mvc.entities.*;
 import ru.kpfu.itis.SoftIlnyr.mvc.services.INTERFACES.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by softi on 23.04.2016.
@@ -84,6 +90,7 @@ public class TalonsController {
         return "talon_order";
     }
 
+    //ajax
     @RequestMapping(value = "/talons/order/libraries", method = RequestMethod.POST)
     public
     @ResponseBody
@@ -129,7 +136,7 @@ public class TalonsController {
 
         boolean flag = false;
         for (Presence presence : book1.getPresence()) {
-            flag = presence.getLibrary() == library1;
+            flag = presence.getLibrary().getId() == library1.getId();
         }
         if (flag) {
             Talon talon = new Talon();
@@ -160,7 +167,7 @@ public class TalonsController {
         Talon talon = talonsService.findById(talon_id);
         if ("taken".equals(status.toLowerCase())) {
             for (Presence presence : talon.getLibrary().getPresence()) {
-                if (presence.getBook() == talon.getBook()) {
+                if (presence.getBook().getId() == talon.getBook().getId()) {
                     presence.setAmount(presence.getAmount() - 1);
                     presenceService.update(presence);
                     break;
@@ -169,7 +176,7 @@ public class TalonsController {
             talon.setStatus(status);
         } else if ("returned".equals(status.toLowerCase())) {
             for (Presence presence : talon.getLibrary().getPresence()) {
-                if (presence.getBook() == talon.getBook()) {
+                if (presence.getBook().getId() == talon.getBook().getId()) {
                     presence.setAmount(presence.getAmount() + 1);
                     presenceService.update(presence);
                     break;
@@ -182,5 +189,11 @@ public class TalonsController {
         return "redirect:/tables/talons";
     }
 
+    @RequestMapping(value = "/tables/talons/excel", method = RequestMethod.GET)
+    public ModelAndView downloadExcel() {
+        List<Talon> talons = talonsService.findAll();
+        return new ModelAndView("talonsView", "talons", talons);
+
+    }
 
 }

@@ -38,6 +38,11 @@ public class UsersServiceIMPL implements UsersService {
 
     @Override
     public User findByNickname(String name) {
-        return usersRepository.findByNickname(name);
+        return usersRepository.findByNicknameIgnoreCase(name);
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        return usersRepository.findByEmailIgnoreCase(email);
     }
 }

@@ -40,6 +40,8 @@
             <h1>
                 Талоны
             </h1>
+            <a href="/tables/talons/excel"><small>Загрузить</small></a>
+
         </section>
 
         <!-- Main content -->

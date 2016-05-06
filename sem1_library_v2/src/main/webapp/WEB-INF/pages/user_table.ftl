@@ -38,8 +38,10 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Авторы
+                Пользователи
             </h1>
+            <a href="/tables/users/excel"><small>Загрузить</small></a>
+
         </section>
 
         <!-- Main content -->

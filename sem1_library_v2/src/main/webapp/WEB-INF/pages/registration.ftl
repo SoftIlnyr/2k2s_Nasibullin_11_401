@@ -17,6 +17,8 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="/resources/dist/css/skins/_all-skins.min.css">
+    <script type="text/javascript" src="/resources/js/MyScripts.js"></script>
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -56,18 +58,32 @@
                 <!-- form start -->
                 <@form.form commandName="regForm" class="form-horizontal" enctype="multipart/form-data" action="/registration" method="POST">
                     <div class="box-body">
-                        <div class="form-group">
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <div class="col-md-offset-2 col-md-10">
+                                <div class="alert alert-danger hidden" id="userinfo">
+                                    <strong>Ошибка!</strong> Такой Логин уже занят!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" id="nickname_group">
                             <label class="col-sm-2 control-label">Имя на сайте:</label>
                             <div class="col-sm-10">
-                                <@form.input path="nickname"  type="text" class="form-control" name="nickname"
-                                       placeholder="Придумайте свой никнейм"/>
+                                <@form.input path="nickname" id="nickname" type="text" class="form-control" name="nickname"
+                                       placeholder="Придумайте свой никнейм" onchange="validateNickname()"/>
                                 <@form.errors path="firstName"></@form.errors>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <div class="col-md-offset-2 col-md-10">
+                                <div class="alert alert-danger hidden" id="emailinfo">
+                                    <strong>Ошибка!</strong> Такой Email уже занят!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" id="email_group">
                             <label class="col-sm-2 control-label">Email:</label>
                             <div class="col-sm-10">
-                                <@form.input path="email" type="email" class="form-control" name="email"
+                                <@form.input path="email" type="email" class="form-control" name="email" onchange="validateEmail()"
                                        placeholder="Введите адрес своего электронного почтового ящика"/>
                                 <@form.errors path="email"></@form.errors>
                             </div>

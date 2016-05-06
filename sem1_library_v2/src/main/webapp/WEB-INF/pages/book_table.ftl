@@ -40,6 +40,7 @@
             <h1>
                 Книги
             </h1>
+            <a href="/tables/books/excel"><small>Загрузить</small></a>
         </section>
 
         <!-- Main content -->

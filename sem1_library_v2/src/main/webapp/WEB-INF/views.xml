@@ -1,0 +1,15 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <bean id="talonsView"
+          class="ru.kpfu.itis.SoftIlnyr.mvc.excel.TalonExcelView">
+    </bean>
+
+    <bean id="booksView" class="ru.kpfu.itis.SoftIlnyr.mvc.excel.BookExcelView"/>
+
+    <bean id="usersView" class="ru.kpfu.itis.SoftIlnyr.mvc.excel.UsersExcelView"/>
+    <bean id="presencesView" class="ru.kpfu.itis.SoftIlnyr.mvc.excel.PresencesExcelView"/>
+
+</beans>

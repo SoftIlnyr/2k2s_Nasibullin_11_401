@@ -34,10 +34,10 @@
 
     <security:authentication-manager>
         <security:authentication-provider ref="authProvider">
-            <!--<security:user-service>-->
-                <!--<security:user name="SoftIlnyr" password="soft160896" authorities="ROlE_ADMIN"/>-->
-                <!--<security:user name="libr" password="libr" authorities="ROLE_MANAGER"/>-->
-            <!--</security:user-service>-->
+            <!--<security:presence-service>-->
+                <!--<security:presence name="SoftIlnyr" password="soft160896" authorities="ROlE_ADMIN"/>-->
+                <!--<security:presence name="libr" password="libr" authorities="ROLE_MANAGER"/>-->
+            <!--</security:presence-service>-->
         </security:authentication-provider>
     </security:authentication-manager>
 

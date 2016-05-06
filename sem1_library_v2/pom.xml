@@ -231,6 +231,13 @@
       <version>2.2.4</version>
     </dependency>
 
+    <!-- Excel library -->
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi</artifactId>
+      <version>3.6</version>
+    </dependency>
+
   </dependencies>
   <build>
     <plugins>

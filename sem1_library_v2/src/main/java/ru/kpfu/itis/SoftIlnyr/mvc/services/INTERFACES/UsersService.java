@@ -18,4 +18,6 @@ public interface UsersService {
     List<User> findAll();
 
     User findByNickname(String name);
+
+    User findByEmail(String email);
 }

@@ -11,4 +11,10 @@ import ru.kpfu.itis.SoftIlnyr.mvc.entities.User;
 @Repository
 public interface UsersRepository extends JpaRepository<User, Integer> {
     User findByNickname(String nickname);
+
+    User findByEmail(String email);
+
+    User findByNicknameIgnoreCase(String name);
+
+    User findByEmailIgnoreCase(String email);
 }

@@ -1,6 +1,7 @@
 package ru.kpfu.itis.SoftIlnyr.mvc.controllers;
 
 import org.apache.commons.io.FileUtils;
+import org.codehaus.jackson.map.util.JSONPObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -11,15 +12,19 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import ru.kpfu.itis.SoftIlnyr.mvc.entities.User;
 import ru.kpfu.itis.SoftIlnyr.mvc.forms.UserForm;
 import ru.kpfu.itis.SoftIlnyr.mvc.services.INTERFACES.UsersService;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
 import java.security.Principal;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by softi on 23.04.2016.
@@ -203,5 +208,27 @@ public class UsersController {
         return filename;
     }
 
+    @RequestMapping(value = "/tables/users/excel", method = RequestMethod.GET)
+    public ModelAndView downloadExcel() {
+        List<User> users = usersService.findAll();
+        return new ModelAndView("usersView", "users", users);
+    }
+
+
+    @ResponseBody
+    @RequestMapping(value = "/registration/nickname_validation", method = RequestMethod.POST)
+    public Boolean nicknameValidation(@RequestBody HashMap<String, Object> map, HttpServletRequest request) {
+        String nickname = (String) map.get("data");
+        Boolean flag = usersService.findByNickname(nickname) == null;
+        return flag;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/registration/email_validation", method = RequestMethod.POST)
+    public Boolean emailValidation(@RequestBody HashMap<String, Object> map, HttpServletRequest request) {
+        String email = (String) map.get("data");
+        Boolean flag = usersService.findByEmail(email) == null;
+        return flag;
+    }
 
 }

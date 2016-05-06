@@ -40,6 +40,8 @@
             <h1>
                 Книги в наличии
             </h1>
+            <a href="/tables/presences/excel"><small>Загрузить</small></a>
+
         </section>
 
         <!-- Main content -->

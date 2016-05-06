@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import ru.kpfu.itis.SoftIlnyr.mvc.entities.Author;
 import ru.kpfu.itis.SoftIlnyr.mvc.entities.Book;
 import ru.kpfu.itis.SoftIlnyr.mvc.entities.Presence;
@@ -155,5 +156,12 @@ public class BooksController {
         FileUtils.writeByteArrayToFile(file, image.getBytes());
         FileUtils.writeByteArrayToFile(file2, image.getBytes());
         return filename;
+    }
+
+    @RequestMapping(value = "/tables/books/excel", method = RequestMethod.GET)
+    public ModelAndView downloadExcel() {
+        List<Book> books = booksService.findAll();
+        return new ModelAndView("booksView", "books", books);
+
     }
 }
