@@ -43,11 +43,29 @@ public class TalonsController {
     }
 
     @RequestMapping(value = "/talons/order", method = RequestMethod.GET)
-    public String talonForm(HttpServletRequest request, ModelMap modelMap) {
-        Integer book_id = (Integer) request.getAttribute("book_id");
+    public String talonForm(HttpServletRequest request, ModelMap modelMap, Principal principal) {
+        if (principal == null) {
+            return "redirect:/login";
+        }
+            Integer book_id = (Integer) request.getAttribute("book_id");
         Book book = null;
         if (book_id != null) {
             book = booksService.findById(book_id);
+
+        }
+
+        List<Library> libraries = new ArrayList<Library>();
+        if (book != null) {
+            List<Presence> presences = book.getPresence();
+            for (Presence presence : presences) {
+                if (!libraries.contains(presence.getLibrary())) {
+                    libraries.add(presence.getLibrary());
+                }
+            }
+        }
+
+        if (libraries.isEmpty()) {
+            libraries = librariesService.findAll();
         }
 
         Integer library_id = (Integer) request.getAttribute("library_id");
@@ -55,23 +73,23 @@ public class TalonsController {
         if (library_id != null) {
             prechosedLibrary = librariesService.findById(library_id);
         }
-//        List<Library> libraries = new ArrayList<Library>();
-//        for (Presence presence : book.getPresence()) {
-//            libraries.add(presence.getLibrary());
-//        }
+
 
         List<Book> books = booksService.findAll();
         modelMap.put("books", books);
         modelMap.put("book", book);
         modelMap.put("prLib", prechosedLibrary);
-//        modelMap.put("libraries", libraries);
+        modelMap.put("libraries", libraries);
 
         return "talon_order";
     }
 
     @RequestMapping(value = "/talons/order/libraries", method = RequestMethod.POST)
-    public @ResponseBody List<Library> getPresences(@RequestBody String bookinfo) {
-        String book_id = bookinfo.replace("\"", "").split(" ")[0];
+    public
+    @ResponseBody
+    List<Library> getPresences(@RequestBody String bookinfo) {
+        String book_id = bookinfo.replace("\"", "");
+        book_id = book_id.replace("\\n", "");
         Book book = booksService.findById(Integer.parseInt(book_id));
         List<Library> libraries = new ArrayList<>();
         for (Presence presence : book.getPresence()) {
@@ -80,24 +98,54 @@ public class TalonsController {
                 libraries.add(library);
             }
         }
+        System.out.println(libraries);
         return libraries;
     }
 
+//    @RequestMapping(value = "/talons/order/libraries", method = RequestMethod.POST)
+//    public @ResponseBody List<Library> getPresences(@RequestBody String bookinfo) {
+//        String book_id = bookinfo.replace("\"", "").split(" ")[0];
+//        Book book = booksService.findById(Integer.parseInt(book_id));
+//        List<Library> libraries = new ArrayList<>();
+//        for (Presence presence : book.getPresence()) {
+//            Library library = presence.getLibrary();
+//            if (!libraries.contains(library)) {
+//                libraries.add(library);
+//            }
+//        }
+//        System.out.println(libraries);
+//        return libraries;
+//    }
+
     @RequestMapping(value = "/talons/order", method = RequestMethod.POST)
     public String talonAdd(@RequestParam String book, @RequestParam String library, @RequestParam int period, Principal principal) {
-        Talon talon = new Talon();
+        if (principal == null) {
+            return "redirect:/login";
+        }
         int book_id = Integer.parseInt(book.split(" ")[0]);
         int library_id = Integer.parseInt(library.split(" ")[0]);
-        talon.setLibrary(librariesService.findById(library_id));
-        talon.setBook(booksService.findById(book_id));
-        talon.setPeriod(period);
-        talon.setStatus("waiting");
+        Book book1 = booksService.findById(book_id);
+        Library library1 = librariesService.findById(library_id);
 
-        User user = (User) ((Authentication) principal).getPrincipal();
-        talon.setUser(user);
-        talonsService.add(talon);
+        boolean flag = false;
+        for (Presence presence : book1.getPresence()) {
+            flag = presence.getLibrary() == library1;
+        }
+        if (flag) {
+            Talon talon = new Talon();
+            talon.setLibrary(librariesService.findById(library_id));
+            talon.setBook(booksService.findById(book_id));
+            talon.setPeriod(period);
+            talon.setStatus("waiting");
 
-        return "redirect:/books/" + book_id;
+            User user = (User) ((Authentication) principal).getPrincipal();
+            talon.setUser(user);
+            talonsService.add(talon);
+            return "redirect:/books/" + book_id;
+        } else {
+            return "redirect:/talons/order";
+        }
+
     }
 
     @RequestMapping(value = "/talons/{talon_id:\\d+}", method = RequestMethod.GET)

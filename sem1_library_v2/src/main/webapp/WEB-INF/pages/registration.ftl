@@ -33,6 +33,7 @@
 <#include "header.ftl">
     <!-- Left column -->
 <#include "left_column.ftl">
+<#assign form=JspTaglibs["http://www.springframework.org/tags/form"]>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -53,70 +54,77 @@
                     <h3 class="box-title">Введите данные для регистрации</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <form class="form-horizontal" enctype="multipart/form-data" action="/registration" method="POST">
+                <@form.form commandName="regForm" class="form-horizontal" enctype="multipart/form-data" action="/registration" method="POST">
                     <div class="box-body">
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Имя на сайте:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="nickname"
-                                       placeholder="Придумайте свой никнейм">
+                                <@form.input path="nickname"  type="text" class="form-control" name="nickname"
+                                       placeholder="Придумайте свой никнейм"/>
+                                <@form.errors path="firstName"></@form.errors>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Email:</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" name="email"
-                                       placeholder="Введите адрес своего электронного почтового ящика">
+                                <@form.input path="email" type="email" class="form-control" name="email"
+                                       placeholder="Введите адрес своего электронного почтового ящика"/>
+                                <@form.errors path="email"></@form.errors>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Имя:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="first_name"
-                                       placeholder="Введите свое имя">
+                                <@form.input path="firstName" type="text" class="form-control" name="first_name"
+                                       placeholder="Введите свое имя"/>
+                                <@form.errors path="firstName"></@form.errors>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Второе имя:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="last_name"
-                                       placeholder="Введите свое второе имя (необязательно)">
+                                <@form.input path="lastName" type="text" class="form-control" name="last_name"
+                                       placeholder="Введите свое второе имя (необязательно)"/>
+                                <@form.errors path="lastName"></@form.errors>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Фамилия:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="surname"
-                                       placeholder="Введите свою фамилию">
+                                <@form.input path="surname" type="text" class="form-control" name="surname"
+                                       placeholder="Введите свою фамилию"/>
+                                <@form.errors path="surname"></@form.errors>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Пароль:</label>
                             <div class="col-sm-10">
-                                <input type="password" class="form-control" name="password"
-                                       placeholder="Введите пароль">
+                                <@form.input path="password" type="password" class="form-control" name="password"
+                                       placeholder="Введите пароль"/>
+                                <@form.errors path="password"></@form.errors>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Подтверждение пароля:</label>
                             <div class="col-sm-10">
-                                <input type="password" class="form-control" name="password_confirmation"
-                                       placeholder="Введите пароль еще раз">
+                                <@form.input path="passwordConfirmation" type="password" class="form-control" name="password_confirmation"
+                                       placeholder="Введите пароль еще раз"/>
+                                <@form.errors path="passwordConfirmation"></@form.errors>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Аватар:</label>
                             <div class="col-sm-10">
-                                <input type="file" name="avatar">
+                                <@form.input path="avatar" type="file" name="avatar"/>
+                                <@form.errors path="avatar"/>
                             </div>
-
                         </div>
                     </div><!-- /.box-body -->
                     <div class="box-footer">
                         <button class="btn btn-default">Отмена</button>
                         <button type="submit" class="btn btn-primary pull-right">Регистрация</button>
                     </div><!-- /.box-footer -->
-                </form>
+                </@form.form>
             </div><!-- /.box -->
 
 

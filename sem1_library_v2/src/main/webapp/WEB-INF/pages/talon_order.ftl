@@ -64,7 +64,7 @@
                             <label class="col-sm-2 control-label">Книга:</label>
                             <div class="col-sm-10">
                                 <select id="book" onchange="findPresences()" class="form-control select2" style="width: 100%;" name="book">
-                                    <option  selected="selected" ><#if book?exists>${book.id}
+                                    <option selected="selected" ><#if book?exists>${book.id}
                                         - ${book.title}</#if></option>
                                 <#list books as book>
                                     <option>${book.id} - ${book.title}</option>
@@ -76,10 +76,10 @@
                             <label class="col-sm-2 control-label">Библиотека:</label>
                             <div class="col-sm-10">
                                 <select class="form-control select2" style="width: 100%;" name="library" id="libraries">
-                                    <option selected="selected"><#if prLib?exists>${prLib.id} - ${prLib.name}</#if></option>
-                                <#--<#list libraries as library>-->
-                                <#--<option>${library.id} - ${library.name} </option>-->
-                                <#--</#list>-->
+                                    <option selected="selected" id="selected"><#if prLib?exists>${prLib.id} - ${prLib.name}</#if></option>
+                                <#list libraries as library>
+                                    <option>${library.id} - ${library.name}</option>
+                                </#list>
                                 </select>
                             </div>
                         </div>

@@ -99,7 +99,7 @@ public class AuthorsController {
 
     private String saveImage(MultipartFile image) throws IOException {
         String rootPath = servletContext.getRealPath("") + "resources\\uploads\\author_images";
-        String rootPath2 = "C:\\Ilnyr\\Programs\\itis\\2k2s\\sem1_library\\src\\main\\webapp\\resources\\uploads\\author_images";
+        String rootPath2 = "C:\\Ilnyr\\Programs\\itis\\2k2s\\sem1_library_v2\\src\\main\\webapp\\resources\\uploads\\author_images";
         rootPath2 = rootPath2.replace("\\", File.separator);
         File dir = new File(rootPath);
         File dir2 = new File(rootPath2);

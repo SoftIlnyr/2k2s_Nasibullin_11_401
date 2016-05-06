@@ -6,13 +6,17 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ru.kpfu.itis.SoftIlnyr.mvc.entities.User;
+import ru.kpfu.itis.SoftIlnyr.mvc.forms.UserForm;
 import ru.kpfu.itis.SoftIlnyr.mvc.services.INTERFACES.UsersService;
 
 import javax.servlet.ServletContext;
+import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
 import java.security.Principal;
@@ -40,25 +44,38 @@ public class UsersController {
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
-    public String registrationGet() {
+    public String registrationGet(ModelMap modelMap, Principal principal) {
+        if (principal != null) {
+            return "redirect:/test";
+        }
+        modelMap.put("regForm", new UserForm());
         return "/registration";
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String registrationPost(@RequestParam String nickname, @RequestParam String first_name,
-                                   @RequestParam String last_name, @RequestParam String surname,
-                                   @RequestParam String password, @RequestParam String email,
+    public String registrationPost(@Valid @ModelAttribute("regForm") UserForm regForm, BindingResult bindingResult, ModelMap modelMap,
                                    @RequestParam MultipartFile avatar) throws IOException {
+        if (bindingResult.hasErrors()) {
+            return "registration";
+        }
+        if (usersService.findByNickname(regForm.getNickname()) != null) {
+            modelMap.put("error", "Пользователь с таким именем уже существует");
+            return "registration";
+        }
+        if (!regForm.getPassword().equals(regForm.getPasswordConfirmation())) {
+            modelMap.put("error", "Подтверждение пароля не то");
+        }
         User user = new User();
-        user.setNickname(nickname);
-        user.setFirstName(first_name);
-        user.setLastName(last_name);
-        user.setSurname(surname);
-        String cryptPassword = encoder.encode(password);
+        user.setNickname(regForm.getNickname());
+        user.setFirstName(regForm.getFirstName());
+        user.setLastName(regForm.getLastName());
+        user.setSurname(regForm.getSurname());
+        String cryptPassword = encoder.encode(regForm.getPassword());
         user.setPassword(cryptPassword);
         user.setRating(0);
-        user.setEmail(email);
+        user.setEmail(regForm.getEmail());
         user.setRole("ROLE_SIMPLE");
+
 
         if (!avatar.isEmpty()) {
             String filename = saveImage(avatar);
@@ -73,6 +90,37 @@ public class UsersController {
 
         return "redirect:/login";
     }
+
+//    @RequestMapping(value = "/registration", method = RequestMethod.POST)
+//    public String registrationPost(@RequestParam String nickname, @RequestParam String first_name,
+//                                   @RequestParam String last_name, @RequestParam String surname,
+//                                   @RequestParam String password, @RequestParam String email,
+//                                   @RequestParam MultipartFile avatar) throws IOException {
+//        User user = new User();
+//        user.setNickname(nickname);
+//        user.setFirstName(first_name);
+//        user.setLastName(last_name);
+//        user.setSurname(surname);
+//        String cryptPassword = encoder.encode(password);
+//        user.setPassword(cryptPassword);
+//        user.setRating(0);
+//        user.setEmail(email);
+//        user.setRole("ROLE_SIMPLE");
+//
+//
+//        if (!avatar.isEmpty()) {
+//            String filename = saveImage(avatar);
+//            user.setAvatar(filename);
+//        } else {
+//            user.setAvatar("default.jpg");
+//        }
+//
+//        usersService.addUser(user);
+//
+//
+//
+//        return "redirect:/login";
+//    }
 
     private void validateImage(MultipartFile image) {
         if (!image.getContentType().equals("image/jpeg")) {
@@ -134,10 +182,10 @@ public class UsersController {
         return "/user_page";
     }
 
+
     private String saveImage(MultipartFile image) throws IOException {
         String rootPath = servletContext.getRealPath("") + "resources\\uploads\\user_images";
-        String rootPath2 = "C:\\Ilnyr\\Programs\\itis\\2k2s\\sem1_library\\src\\main\\webapp\\resources\\uploads\\user_images";
-        rootPath2 = rootPath2.replace("\\", File.separator);
+        String rootPath2 = "C:\\Ilnyr\\Programs\\itis\\2k2s\\sem1_library_v2\\src\\main\\webapp\\resources\\uploads\\user_images";
         File dir = new File(rootPath);
         File dir2 = new File(rootPath2);
         if (!dir.exists()) {
@@ -149,8 +197,9 @@ public class UsersController {
         String filename = String.valueOf(image.hashCode()) + "." + image.getContentType().split("/")[1];
         File file = new File(dir.getAbsolutePath() + File.separator + filename);
         File file2 = new File(dir2.getAbsolutePath() + File.separator + filename);
-        FileUtils.writeByteArrayToFile(file, image.getBytes());
-        FileUtils.writeByteArrayToFile(file2, image.getBytes());
+        byte[] data = image.getBytes();
+        FileUtils.writeByteArrayToFile(file, data);
+        FileUtils.writeByteArrayToFile(file2, data);
         return filename;
     }
 

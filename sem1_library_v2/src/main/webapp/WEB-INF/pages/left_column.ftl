@@ -27,7 +27,7 @@
                 <ul class="treeview-menu">
                     <li><a href="/books/"><i class="fa fa-circle-o"></i> Главная</a></li>
                     <li><a href="/auhors/"><i class="fa fa-circle-o"></i> Авторы</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Получить книгу</a></li>
+                    <li><a href="/talons/order"><i class="fa fa-circle-o"></i> Получить книгу</a></li>
                 </ul>
             </li>
         <@security.authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')">
