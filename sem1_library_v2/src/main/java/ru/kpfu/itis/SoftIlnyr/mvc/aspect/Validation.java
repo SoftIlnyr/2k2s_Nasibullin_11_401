@@ -12,16 +12,9 @@ import org.aspectj.lang.annotation.Before;
 @Aspect
 public class Validation {
 
-    @Around("execution(* ru.kpfu.itis.SoftIlnyr.mvc.entities.User.setEmail(String))")
-    public Object validateEmail(ProceedingJoinPoint jp) {
-        String email = (String) jp.getArgs()[0];
-        String strings = jp.getSignature().toString();
-        if (email.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")) {
-
-        }
-
-
-
-        return jp;
+    @Around("execution(* ru.kpfu.itis.SoftIlnyr.mvc.controllers.*(*))")
+    public java.lang.Object message(ProceedingJoinPoint joinPoint) throws Throwable {
+        System.out.println(joinPoint.getSignature());
+        return joinPoint.proceed();
     }
 }

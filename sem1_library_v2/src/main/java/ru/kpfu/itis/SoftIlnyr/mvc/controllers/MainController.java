@@ -31,7 +31,7 @@ public class MainController {
     @Autowired
     private UsersService usersService;
 
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String mainPath(ModelMap modelMap, Principal principal) {
         List<Author> authors = authorsService.findAll();
         modelMap.put("authors", authors);

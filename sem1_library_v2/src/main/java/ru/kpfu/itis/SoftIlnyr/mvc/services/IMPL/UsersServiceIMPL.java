@@ -19,8 +19,9 @@ public class UsersServiceIMPL implements UsersService {
     @Autowired
     UsersRepository usersRepository;
 
-    public void addUser(User user) {
+    public User addUser(User user) {
         usersRepository.save(user);
+        return user;
     }
 
     public User findById(int id) {
@@ -44,5 +45,13 @@ public class UsersServiceIMPL implements UsersService {
     @Override
     public User findByEmail(String email) {
         return usersRepository.findByEmailIgnoreCase(email);
+    }
+
+    public UsersRepository getUsersRepository() {
+        return usersRepository;
+    }
+
+    public void setUsersRepository(UsersRepository usersRepository) {
+        this.usersRepository = usersRepository;
     }
 }

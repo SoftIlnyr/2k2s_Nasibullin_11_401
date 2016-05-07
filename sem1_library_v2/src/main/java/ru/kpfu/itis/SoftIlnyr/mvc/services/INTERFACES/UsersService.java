@@ -8,7 +8,7 @@ import java.util.List;
  * Created by softi on 23.04.2016.
  */
 public interface UsersService {
-    void addUser(User user);
+    User addUser(User user);
 
     User findById(int id);
 
