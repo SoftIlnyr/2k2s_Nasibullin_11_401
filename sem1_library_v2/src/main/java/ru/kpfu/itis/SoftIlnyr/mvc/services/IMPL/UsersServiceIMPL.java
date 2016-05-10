@@ -17,7 +17,7 @@ import java.util.List;
 public class UsersServiceIMPL implements UsersService {
 
     @Autowired
-    UsersRepository usersRepository;
+    public UsersRepository usersRepository;
 
     public User addUser(User user) {
         usersRepository.save(user);

@@ -31,8 +31,5 @@
 
     </bean>
 
-    <!--<bean id="logging" class="ru.kpfu.itis.SoftIlnyr.mvc.aspect.Validation"/>-->
-
-
 
 </beans>

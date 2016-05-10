@@ -96,36 +96,6 @@ public class UsersController {
         return "redirect:/login";
     }
 
-//    @RequestMapping(value = "/registration", method = RequestMethod.POST)
-//    public String registrationPost(@RequestParam String nickname, @RequestParam String first_name,
-//                                   @RequestParam String last_name, @RequestParam String surname,
-//                                   @RequestParam String password, @RequestParam String email,
-//                                   @RequestParam MultipartFile avatar) throws IOException {
-//        User user = new User();
-//        user.setNickname(nickname);
-//        user.setFirstName(first_name);
-//        user.setLastName(last_name);
-//        user.setSurname(surname);
-//        String cryptPassword = encoder.encode(password);
-//        user.setPassword(cryptPassword);
-//        user.setRating(0);
-//        user.setEmail(email);
-//        user.setRole("ROLE_SIMPLE");
-//
-//
-//        if (!avatar.isEmpty()) {
-//            String filename = saveImage(avatar);
-//            user.setAvatar(filename);
-//        } else {
-//            user.setAvatar("default.jpg");
-//        }
-//
-//        usersService.addUser(user);
-//
-//
-//
-//        return "redirect:/login";
-//    }
 
     private void validateImage(MultipartFile image) {
         if (!image.getContentType().equals("image/jpeg")) {
