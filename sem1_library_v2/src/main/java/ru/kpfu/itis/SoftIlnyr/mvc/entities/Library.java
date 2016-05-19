@@ -45,7 +45,7 @@ public class Library{
         this.address = address;
     }
 
-    @OneToMany(targetEntity = Presence.class, mappedBy = "library", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @OneToMany(targetEntity = Presence.class, mappedBy = "library", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     public List<Presence> getPresence() {
         return presence;
     }
@@ -54,7 +54,7 @@ public class Library{
         this.presence = presence;
     }
 
-    @OneToMany(targetEntity = Talon.class, mappedBy = "library", fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = Talon.class, mappedBy = "library", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     public List<Talon> getTalons() {
         return talons;
     }

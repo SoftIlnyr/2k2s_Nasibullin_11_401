@@ -63,6 +63,7 @@
                                     <th>Книга</th>
                                     <th>Библиотека</th>
                                     <th>Читатель</th>
+                                    <th>Период</th>
                                     <th>Статус</th>
                                 </tr>
                                 </thead>
@@ -73,6 +74,7 @@
                                     <td>${talon.book.title}</td>
                                     <td>${talon.library.name}</td>
                                     <td>${talon.user.firstName} ${talon.user.surname}</td>
+                                    <td>${talon.period}</td>
                                     <td><a href="/talons/${talon.id}">${talon.status}</a></td>
                                 </tr>
                                 </#list>
@@ -83,6 +85,7 @@
                                     <th>Книга</th>
                                     <th>Библиотека</th>
                                     <th>Читатель</th>
+                                    <th>Период</th>
                                     <th>Статус</th>
                                 </tr>
                                 </tfoot>

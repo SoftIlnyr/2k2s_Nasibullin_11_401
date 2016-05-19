@@ -103,7 +103,7 @@ public class Book {
         this.author = author;
     }
 
-    @OneToMany(targetEntity = Presence.class, mappedBy = "book", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @OneToMany(targetEntity = Presence.class, mappedBy = "book", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     public List<Presence> getPresence() {
         return presence;
     }
@@ -112,7 +112,7 @@ public class Book {
         this.presence = presence;
     }
 
-    @OneToMany(targetEntity = Talon.class, mappedBy = "book", fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = Talon.class, mappedBy = "book", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     public List<Talon> getTalons() {
         return talons;
     }

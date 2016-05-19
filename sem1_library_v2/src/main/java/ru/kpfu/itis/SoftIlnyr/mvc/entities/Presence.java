@@ -41,7 +41,7 @@ public class Presence{
     }
 
     @ManyToOne(targetEntity = Book.class)
-    @JoinColumn(name = "book_id", referencedColumnName = "id")
+    @JoinColumn(name = "book_id")
     public Book getBook() {
         return book;
     }
@@ -67,9 +67,8 @@ public class Presence{
 
         Presence that = (Presence) o;
 
-        if (amount != that.amount) return false;
+        return id == that.id;
 
-        return true;
     }
 
     @Override

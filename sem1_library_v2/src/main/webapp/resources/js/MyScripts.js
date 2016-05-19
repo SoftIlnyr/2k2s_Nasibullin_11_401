@@ -1,5 +1,5 @@
 findPresences = function (request, response) {
-    var id = $('#book').val().split(" ")[0];
+    var id = parseInt($('#book').val().split(" ")[0]);
     console.log(id);
 
     $.ajax({
@@ -20,8 +20,8 @@ findPresences = function (request, response) {
             }
         },
         error: function (result) {
-            alert(" Ошибка");
-            console.log(libraries)
+            // alert(" Ошибка");
+            console.log("Error")
         }
     });
 };

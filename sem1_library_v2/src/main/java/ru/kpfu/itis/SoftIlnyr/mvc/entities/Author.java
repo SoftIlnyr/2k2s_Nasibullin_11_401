@@ -68,7 +68,6 @@ public class Author {
         this.info = info;
     }
 
-
     @OneToMany(targetEntity = Book.class, mappedBy = "author", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     public List<Book> getBooks() {
         return books;

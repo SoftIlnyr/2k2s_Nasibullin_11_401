@@ -51,7 +51,7 @@ public class Talon {
     }
 
     @ManyToOne(targetEntity = Library.class)
-    @JoinColumn(name = "library_id", referencedColumnName = "id")
+    @JoinColumn(name = "library_id")
     public Library getLibrary() {
         return library;
     }
@@ -61,7 +61,7 @@ public class Talon {
     }
 
     @ManyToOne(targetEntity = Book.class)
-    @JoinColumn(name = "book_id", referencedColumnName = "id")
+    @JoinColumn(name = "book_id")
     public Book getBook() {
         return book;
     }
@@ -87,11 +87,8 @@ public class Talon {
 
         Talon that = (Talon) o;
 
-        if (id != that.id) return false;
-        if (period != that.period) return false;
-        if (status != null ? !status.equals(that.status) : that.status != null) return false;
+        return id == that.id;
 
-        return true;
     }
 
     @Override
