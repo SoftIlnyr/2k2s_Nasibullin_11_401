@@ -46,7 +46,7 @@ public class UsersControllerTest {
     public void loggedRegistrationShouldWorkCorrect() {
         ModelMap modelMap = mock(ModelMap.class);
         Principal principal = mock(Principal.class);
-        Assert.assertEquals(usersController.registrationGet(modelMap, principal), "redirect:/test");
+        Assert.assertEquals(usersController.registrationGet(modelMap, principal), "redirect:/");
     }
 
 }

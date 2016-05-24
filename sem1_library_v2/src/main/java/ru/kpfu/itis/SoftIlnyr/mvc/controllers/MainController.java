@@ -35,7 +35,7 @@ public class MainController {
     public String mainPath(ModelMap modelMap, Principal principal) {
         List<Author> authors = authorsService.findAll();
         modelMap.put("authors", authors);
-        return "test";
+        return "/test";
     }
 
 

@@ -42,7 +42,7 @@ public class UsersController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(ModelMap modelMap, Principal principal) {
         if (principal != null) {
-            return "redirect:/test";
+            return "redirect:/";
         }
 
         return "/login";
@@ -51,7 +51,7 @@ public class UsersController {
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registrationGet(ModelMap modelMap, Principal principal) {
         if (principal != null) {
-            return "redirect:/test";
+            return "redirect:/";
         }
         modelMap.put("regForm", new UserForm());
         return "/registration";

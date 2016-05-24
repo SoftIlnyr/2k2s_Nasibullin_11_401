@@ -3,6 +3,7 @@ package ru.kpfu.itis.SoftIlnyr.ui;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -15,12 +16,18 @@ import ru.kpfu.itis.SoftIlnyr.entities.User;
 import ru.kpfu.itis.SoftIlnyr.services.INTERFACES.UsersService;
 
 import javax.annotation.PostConstruct;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 /**
  * Created by softi on 16.05.2016.
  */
 public class LoginController {
+    public TextField nickname;
+    public PasswordField password;
     private Logger logger = LoggerFactory.getLogger(UsersController.class);
 
     // Инъекции Spring
@@ -56,6 +63,9 @@ public class LoginController {
      * Привязан к кнопке в FXML файле представления.
      */
     @FXML
-    public void addContact() {
+    public void doLogin() throws IOException {
+        String nickname = (String) this.nickname.getCharacters();
+        String password = (String) this.password.getCharacters();
+
     }
 }
