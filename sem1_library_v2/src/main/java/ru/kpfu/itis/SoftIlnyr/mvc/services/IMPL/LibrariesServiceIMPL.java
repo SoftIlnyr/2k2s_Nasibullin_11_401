@@ -17,7 +17,7 @@ import java.util.List;
 public class LibrariesServiceIMPL implements LibrariesService {
 
     @Autowired
-    LibrariesRepository librariesRepository;
+    public LibrariesRepository librariesRepository;
 
     public void addLibrary(Library library) {
         librariesRepository.save(library);

@@ -64,9 +64,7 @@ public class Presence{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Presence that = (Presence) o;
-
         return id == that.id;
 
     }

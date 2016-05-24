@@ -17,7 +17,7 @@ import java.util.List;
 public class PresenceServiceIMPL implements PresenceService {
 
     @Autowired
-    private PresenceRepository presenceRepository;
+    public PresenceRepository presenceRepository;
 
     public List<Presence> findAll() {
         List<Presence> presences = (List<Presence>) presenceRepository.findAll();

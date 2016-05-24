@@ -18,7 +18,7 @@ import java.util.List;
 public class BooksServiceIMPL implements BooksService {
 
     @Autowired
-    private BooksRepository booksRepository;
+    public BooksRepository booksRepository;
 
     public void addBook(Book book) {
         booksRepository.save(book);

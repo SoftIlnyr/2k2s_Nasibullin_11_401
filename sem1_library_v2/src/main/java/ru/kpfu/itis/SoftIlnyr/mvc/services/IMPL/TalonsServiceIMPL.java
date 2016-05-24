@@ -17,7 +17,7 @@ import java.util.List;
 public class TalonsServiceIMPL implements TalonsService {
 
     @Autowired
-    TalonsRepository talonsRepository;
+    public TalonsRepository talonsRepository;
 
     public void add(Talon talon) {
         talonsRepository.save(talon);

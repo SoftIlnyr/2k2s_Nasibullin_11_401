@@ -16,7 +16,7 @@ import java.util.List;
 @Transactional
 public class AuthorsServiceIMPL implements AuthorsService {
     @Autowired
-    AuthorsRepository authorsRepository;
+    public AuthorsRepository authorsRepository;
 
     public List<Author> findAll() {
         List<Author> authors = (List<Author>) authorsRepository.findAll();
@@ -39,4 +39,5 @@ public class AuthorsServiceIMPL implements AuthorsService {
         Author author = authorsRepository.findOne(id);
         return author;
     }
+
 }
