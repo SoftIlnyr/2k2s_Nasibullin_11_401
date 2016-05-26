@@ -44,19 +44,6 @@ public class RestController {
         String nickname = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getNickname();
         System.out.println(nickname);
         User user = usersService.findByNickname(nickname);
-//        System.out.println("Post");
-//        System.out.println(nickname);
-//        User user = usersService.findByNickname(nickname);
-
-//        String nickname = request.getParameter("nickname");
-//        String password = request.getParameter("password");
-//        User user = usersService.findByNickname(nickname);
-//        String info = request.getHeader("Authorization");
-//        byte[] valueDecoded = Base64.getDecoder().decode(info);
-//        String decodedInfo = new String(valueDecoded);
-//        System.out.println(decodedInfo);
-//        User user = usersService.findByNickname()
-//        System.out.println(info);
         return user;
     }
 }

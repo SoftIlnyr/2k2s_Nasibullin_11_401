@@ -1,6 +1,7 @@
 package ru.kpfu.itis.SoftIlnyr.entities;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerator;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -17,7 +18,6 @@ public class Book {
     private String language;
     private int rating;
     private String image;
-    @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
     private Author author;
     private String info;
     private List<Presence> presence;

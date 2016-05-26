@@ -1,6 +1,9 @@
 package ru.kpfu.itis.SoftIlnyr.mvc.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 
@@ -13,8 +16,11 @@ public class Talon {
     private int id;
     private int period;
     private String status;
+        @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
     private Book book;
+    @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
     private Library library;
+    @JsonIgnore
     private User user;
 
     @Id

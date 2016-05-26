@@ -1,8 +1,6 @@
 package ru.kpfu.itis.SoftIlnyr.mvc.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -18,7 +16,9 @@ public class Library{
     private int id;
     private String address;
     private String name;
+    @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
     private List<Presence> presence;
+    @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
     private List<Talon> talons;
 
     @Id

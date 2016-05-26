@@ -136,6 +136,9 @@ public class TalonsController {
         boolean flag = false;
         for (Presence presence : book1.getPresence()) {
             flag = presence.getLibrary().getId() == library1.getId();
+            if (flag) {
+                break;
+            }
         }
         if (flag) {
             Talon talon = new Talon();

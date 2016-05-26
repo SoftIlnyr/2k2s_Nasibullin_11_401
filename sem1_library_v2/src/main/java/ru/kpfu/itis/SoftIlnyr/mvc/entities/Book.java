@@ -21,9 +21,10 @@ public class Book {
     @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
     private Author author;
     private String info;
-    @JsonBackReference
+    @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
     private List<Presence> presence;
-    @JsonBackReference
+    //    @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
+    @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
     private List<Talon> talons;
 
     @Id

@@ -13,7 +13,6 @@ public class Author {
     private String photo;
     private String surname;
     private String info;
-    @JsonBackReference
     private List<Book> books;
 
     public int getId() {
