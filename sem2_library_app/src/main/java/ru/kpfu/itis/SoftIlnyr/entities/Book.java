@@ -1,5 +1,10 @@
 package ru.kpfu.itis.SoftIlnyr.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -16,9 +21,12 @@ public class Book {
     private String language;
     private int rating;
     private String image;
+    @JsonIgnore
     private Author author;
     private String info;
+    @JsonIgnore
     private List<Presence> presence;
+    @JsonIgnore
     private List<Talon> talons;
 
     @Id

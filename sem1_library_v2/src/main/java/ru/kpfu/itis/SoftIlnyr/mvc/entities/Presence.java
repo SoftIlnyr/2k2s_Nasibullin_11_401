@@ -1,7 +1,9 @@
 package ru.kpfu.itis.SoftIlnyr.mvc.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,8 +15,9 @@ import java.io.Serializable;
 @Table(name = "books_libraries", schema = "public", catalog = "legistis_libro")
 public class Presence{
     private int amount;
+    @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
     private Book book;
-    @JsonManagedReference
+    @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
     private Library library;
     private int id;
 

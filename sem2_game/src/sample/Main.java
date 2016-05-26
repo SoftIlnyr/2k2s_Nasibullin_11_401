@@ -15,8 +15,8 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class Main extends Application {
-    private int windowWidth = 1200;
-    private int windowsHeight = 900;
+    private int windowWidth = 800;
+    private int windowsHeight = 600;
     private boolean flag;
     private int timer = 500;
     private int disap = 300;

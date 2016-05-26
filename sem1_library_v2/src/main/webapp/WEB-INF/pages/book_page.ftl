@@ -113,7 +113,6 @@
 
                                     </div><!-- /.row -->
 
-                                    <input class="form-control input-sm" type="text" placeholder="Type a comment">
                                 </div><!-- /.post -->
                             </div><!-- /.tab-pane -->
                         <@security.authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')">

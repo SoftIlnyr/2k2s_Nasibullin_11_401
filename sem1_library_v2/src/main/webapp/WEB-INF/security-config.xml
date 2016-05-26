@@ -2,6 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:beans="http://www.springframework.org/schema/c"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/security
@@ -21,13 +22,19 @@
         <security:intercept-url pattern="/tables/**" access="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')"/>
         <security:intercept-url pattern="/authors/**" method="POST" access="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')"/>
         <security:intercept-url pattern="/books/**" method="POST" access="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')"/>
-        <security:intercept-url pattern="/libraries/**" method="POST" access="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')"/>
-        <security:intercept-url pattern="/talons/order/**" method="POST" access="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_SIMPLE')"/>
+        <security:intercept-url pattern="/libraries/**" method="POST"
+                                access="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')"/>
+        <security:intercept-url pattern="/talons/order/**" method="POST"
+                                access="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_SIMPLE')"/>
         <security:intercept-url pattern="/talons/**" method="POST" access="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')"/>
-        <security:intercept-url pattern="/users/**" method="POST" access="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_SIMPLE')"/>
+        <security:intercept-url pattern="/users/**" method="POST"
+                                access="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_SIMPLE')"/>
+        <security:intercept-url pattern="/rest/**" method="POST"
+                                access="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_SIMPLE')"/>
         <security:anonymous username="guest" granted-authority="ROLE_ANON"/>
         <!--<security:csrf/>-->
-        <security:remember-me key="uniqueAndSecret" token-validity-seconds="3600" remember-me-parameter="remember_me" data-source-ref="dataSource"/>
+        <security:remember-me key="uniqueAndSecret" token-validity-seconds="3600" remember-me-parameter="remember_me"
+                              data-source-ref="dataSource"/>
     </security:http>
 
     <security:global-method-security secured-annotations="enabled" pre-post-annotations="enabled"/>
@@ -35,8 +42,8 @@
     <security:authentication-manager>
         <security:authentication-provider ref="authProvider">
             <!--<security:presence-service>-->
-                <!--<security:presence name="SoftIlnyr" password="soft160896" authorities="ROlE_ADMIN"/>-->
-                <!--<security:presence name="libr" password="libr" authorities="ROLE_MANAGER"/>-->
+            <!--<security:presence name="SoftIlnyr" password="soft160896" authorities="ROlE_ADMIN"/>-->
+            <!--<security:presence name="libr" password="libr" authorities="ROLE_MANAGER"/>-->
             <!--</security:presence-service>-->
         </security:authentication-provider>
     </security:authentication-manager>

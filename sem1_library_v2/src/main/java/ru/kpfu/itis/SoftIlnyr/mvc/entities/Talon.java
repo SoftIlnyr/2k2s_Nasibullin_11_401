@@ -14,7 +14,6 @@ public class Talon {
     private int period;
     private String status;
     private Book book;
-    @JsonManagedReference
     private Library library;
     private User user;
 

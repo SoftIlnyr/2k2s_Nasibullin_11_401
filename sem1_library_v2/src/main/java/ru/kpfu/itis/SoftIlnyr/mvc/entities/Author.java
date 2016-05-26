@@ -1,5 +1,7 @@
 package ru.kpfu.itis.SoftIlnyr.mvc.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -14,6 +16,7 @@ public class Author {
     private String photo;
     private String surname;
     private String info;
+    @JsonBackReference
     private List<Book> books;
 
     @Id

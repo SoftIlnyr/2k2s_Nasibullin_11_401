@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Lazy;
+import ru.kpfu.itis.SoftIlnyr.controllers.UserConfig;
 
-@Lazy
 @SpringBootApplication
 public class Application extends AbstractJavaFxApplicationSupport {
 
@@ -18,6 +18,9 @@ public class Application extends AbstractJavaFxApplicationSupport {
     @Qualifier("loginView")
     @Autowired
     private ConfigurationControllers.View view;
+
+    @Autowired
+    private UserConfig userConfig;
 
     @Override
     public void start(Stage stage) throws Exception {

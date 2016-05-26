@@ -18,9 +18,7 @@ public class Library{
     private int id;
     private String address;
     private String name;
-    @JsonIgnore
     private List<Presence> presence;
-    @JsonIgnore
     private List<Talon> talons;
 
     @Id

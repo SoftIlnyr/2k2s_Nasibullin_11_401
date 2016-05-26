@@ -3,8 +3,9 @@ package ru.kpfu.itis.SoftIlnyr;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import ru.kpfu.itis.SoftIlnyr.ui.UsersController;
+import ru.kpfu.itis.SoftIlnyr.controllers.UserConfig;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,27 +18,28 @@ import java.io.InputStream;
  * @author http://mruslan.com
  */
 @Configuration
+@ComponentScan(basePackages = "ru.kpfu.itis.SoftIlnyr")
 public class ConfigurationControllers {
-
-    @Bean(name = "usersView")
-    public View getUsersView() throws IOException {
-        return loadView("fxml/users.fxml");
-    }
 
     @Bean(name = "loginView")
     public View getLoginView() throws IOException {
         return loadView("fxml/login.fxml");
     }
 
+    @Bean(name = "booksView")
+    public View getBooksView() throws IOException {
+        return loadView("fxml/books.fxml");
+    }
+
+    @Bean(name = "userconfig")
+    public UserConfig getUserConfig() {
+        return new UserConfig();
+    }
+
     /**
      * Именно благодаря этому методу мы добавили контроллер в контекст спринга,
      * и заставили его сделать произвести все необходимые инъекции.
      */
-
-    @Bean
-    public UsersController getUsersController() throws IOException {
-        return (UsersController) getUsersView().getController();
-    }
 
     /**
      * Самый обыкновенный способ использовать FXML загрузчик.

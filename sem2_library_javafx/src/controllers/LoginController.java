@@ -18,6 +18,8 @@ public class LoginController {
     public void doLogin(ActionEvent actionEvent) throws IOException {
 //        String nickname = (String) this.nickname.getCharacters();
 //        String password = (String) this.password.getCharacters();
+        System.out.println(this.nickname.getCharacters());
+        System.out.println(this.password.getCharacters());
         FXMLLoader books = new FXMLLoader(getClass().getResource("/fxml/books.fxml"));
         Parent root2 = books.load();
         Scene scene = new Scene(root2);

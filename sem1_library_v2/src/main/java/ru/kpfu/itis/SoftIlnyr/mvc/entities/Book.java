@@ -1,5 +1,7 @@
 package ru.kpfu.itis.SoftIlnyr.mvc.entities;
 
+import com.fasterxml.jackson.annotation.*;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -16,9 +18,12 @@ public class Book {
     private String language;
     private int rating;
     private String image;
+    @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
     private Author author;
     private String info;
+    @JsonBackReference
     private List<Presence> presence;
+    @JsonBackReference
     private List<Talon> talons;
 
     @Id
