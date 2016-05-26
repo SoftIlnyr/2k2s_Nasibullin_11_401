@@ -3,6 +3,7 @@ package ru.kpfu.itis.SoftIlnyr.controllers;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
+import ru.kpfu.itis.SoftIlnyr.entities.User;
 
 import java.nio.charset.Charset;
 
@@ -11,12 +12,14 @@ import java.nio.charset.Charset;
  */
 @Component
 public class UserConfig {
-    public String nickname;
-    public String password;
+    private String nickname;
+    private String password;
+    private User user;
 
-    public UserConfig(String nickname, String password) {
+    public UserConfig(String nickname, String password, User user) {
         this.nickname = nickname;
         this.password = password;
+        this.user = user;
     }
 
     public UserConfig() {
@@ -36,6 +39,14 @@ public class UserConfig {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public HttpHeaders createHeaders() {

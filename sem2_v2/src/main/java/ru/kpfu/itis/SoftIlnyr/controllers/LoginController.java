@@ -13,9 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import ru.kpfu.itis.SoftIlnyr.SpringFXMLLoader;
 import ru.kpfu.itis.SoftIlnyr.entities.Book;
@@ -53,18 +57,11 @@ public class LoginController extends AbstractController {
         httpMessageConverters.add(new MappingJackson2HttpMessageConverter());
         restTemplate.setMessageConverters(httpMessageConverters);
         User user = restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<Object>(userConfig.createHeaders()), User.class).getBody();
-        System.out.println(user);
+        userConfig.setUser(user);
 
         BooksController booksController = (BooksController) SpringFXMLLoader.load("/fxml/books.fxml", getStage());
         Scene scene = new Scene((Parent) booksController.getView());
         super.getStage().setScene(scene);
-//        stage.setScene(new Scene(booksController.getView()));
-//        RestTemplate restTemplate = new RestTemplate();
-//        String url = "http://localhost:8080/rest/info";
-//        List<HttpMessageConverter<?>> httpMessageConverters = new ArrayList<>();
-//        httpMessageConverters.add(new MappingJackson2HttpMessageConverter());
-//        restTemplate.setMessageConverters(httpMessageConverters);
-
     }
 
     @Override

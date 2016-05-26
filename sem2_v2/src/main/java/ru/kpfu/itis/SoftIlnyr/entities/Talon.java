@@ -1,5 +1,8 @@
 package ru.kpfu.itis.SoftIlnyr.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 /**
  * Created by softi on 18.04.2016.
  */
@@ -7,8 +10,11 @@ public class Talon {
     private int id;
     private int period;
     private String status;
+    @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
     private Book book;
+    @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
     private Library library;
+    @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
     private User user;
 
     public int getId() {

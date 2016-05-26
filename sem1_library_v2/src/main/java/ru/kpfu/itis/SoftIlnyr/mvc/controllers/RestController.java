@@ -1,7 +1,12 @@
 package ru.kpfu.itis.SoftIlnyr.mvc.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ru.kpfu.itis.SoftIlnyr.mvc.entities.Book;
 import ru.kpfu.itis.SoftIlnyr.mvc.entities.User;
@@ -32,16 +37,26 @@ public class RestController {
         return bookList;
     }
 
-    @RequestMapping(value = "/login")
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public
     @ResponseBody
-    User gertUser(HttpServletRequest request) {
-        String info = request.getHeader("Authorization");
-        byte[] valueDecoded = Base64.getDecoder().decode(info);
-        String decodedInfo = new String(valueDecoded);
-        System.out.println(decodedInfo);
+    User gertUser() {
+        String nickname = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getNickname();
+        System.out.println(nickname);
+        User user = usersService.findByNickname(nickname);
+//        System.out.println("Post");
+//        System.out.println(nickname);
+//        User user = usersService.findByNickname(nickname);
+
+//        String nickname = request.getParameter("nickname");
+//        String password = request.getParameter("password");
+//        User user = usersService.findByNickname(nickname);
+//        String info = request.getHeader("Authorization");
+//        byte[] valueDecoded = Base64.getDecoder().decode(info);
+//        String decodedInfo = new String(valueDecoded);
+//        System.out.println(decodedInfo);
 //        User user = usersService.findByNickname()
-        System.out.println(info);
-        return null;
+//        System.out.println(info);
+        return user;
     }
 }
