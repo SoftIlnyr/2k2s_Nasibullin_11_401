@@ -1,5 +1,8 @@
 package ru.kpfu.itis.SoftIlnyr.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import java.util.List;
 
 /**
@@ -9,7 +12,9 @@ public class Library{
     private int id;
     private String address;
     private String name;
+    @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
     private List<Presence> presence;
+    @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
     private List<Talon> talons;
 
     public int getId() {

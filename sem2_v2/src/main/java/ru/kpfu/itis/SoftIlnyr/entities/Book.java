@@ -18,9 +18,12 @@ public class Book {
     private String language;
     private int rating;
     private String image;
+    @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
     private Author author;
     private String info;
+    @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
     private List<Presence> presence;
+    @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
     private List<Talon> talons;
 
     public int getId() {

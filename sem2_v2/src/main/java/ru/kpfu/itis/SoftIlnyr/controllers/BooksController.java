@@ -4,9 +4,12 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -23,7 +26,10 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+import ru.kpfu.itis.SoftIlnyr.SpringFXMLLoader;
 import ru.kpfu.itis.SoftIlnyr.entities.Book;
+import ru.kpfu.itis.SoftIlnyr.entities.Library;
+import ru.kpfu.itis.SoftIlnyr.entities.Presence;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
@@ -41,6 +47,16 @@ public class BooksController extends AbstractController {
     public TextField issue;
     @Autowired
     UserConfig userConfig;
+
+    @Autowired
+    LoginController loginController;
+
+    @Autowired
+    OrderController orderController;
+
+    @Autowired
+    ProfileController profileController;
+
 
     public void initialize() {
         System.out.println(userConfig.getNickname());
@@ -61,7 +77,21 @@ public class BooksController extends AbstractController {
             TableRow<Book> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
-                    System.out.println(row.getItem().getTitle());
+                    Book book = row.getItem();
+                    orderController = (OrderController) SpringFXMLLoader.load("/fxml/order.fxml", getStage());
+                    orderController.setBook(book);
+                    ArrayList<String> libraries = new ArrayList<>();
+                    for (Presence presence : book.getPresence()) {
+                        Library library = presence.getLibrary();
+                        if (!libraries.contains(library)) {
+                            libraries.add(library.getId() + " - " + library.getName());
+                        }
+                    }
+                    ObservableList<String> list = FXCollections.observableList(libraries);
+                    orderController.libraries.setItems(list);
+                    orderController.bookTitle.setText(book.getTitle());
+                    Scene scene = new Scene((Parent) orderController.getView());
+                    super.getStage().setScene(scene);
                 }
             });
             return row ;
@@ -96,5 +126,20 @@ public class BooksController extends AbstractController {
 
     public void doOrder(Event event) {
         System.out.println("Order");
+    }
+
+    public void logout(ActionEvent actionEvent) {
+        loginController.resetInfo();
+    }
+
+    public void toProfile(ActionEvent actionEvent) {
+        if (profileController.getView() == null) {
+            profileController = (ProfileController) SpringFXMLLoader.load("/fxml/profile.fxml", getStage());
+            Scene scene = new Scene((Parent) profileController.getView());
+            super.getStage().setScene(scene);
+        } else {
+            Scene scene = profileController.getView().getScene();
+            super.getStage().setScene(scene);
+        }
     }
 }

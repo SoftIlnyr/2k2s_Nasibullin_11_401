@@ -20,7 +20,7 @@ public class Talon {
     private Book book;
     @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
     private Library library;
-    @JsonIgnore
+    @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
     private User user;
 
     @Id

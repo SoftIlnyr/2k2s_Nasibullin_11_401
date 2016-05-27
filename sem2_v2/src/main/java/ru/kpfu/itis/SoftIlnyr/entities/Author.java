@@ -1,6 +1,8 @@
 package ru.kpfu.itis.SoftIlnyr.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.util.List;
 
@@ -13,6 +15,7 @@ public class Author {
     private String photo;
     private String surname;
     private String info;
+    @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
     private List<Book> books;
 
     public int getId() {

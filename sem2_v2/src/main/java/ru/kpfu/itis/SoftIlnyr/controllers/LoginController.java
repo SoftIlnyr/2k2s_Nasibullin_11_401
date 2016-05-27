@@ -59,7 +59,7 @@ public class LoginController extends AbstractController {
         User user = restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<Object>(userConfig.createHeaders()), User.class).getBody();
         userConfig.setUser(user);
 
-        BooksController booksController = (BooksController) SpringFXMLLoader.load("/fxml/books.fxml", getStage());
+        booksController = (BooksController) SpringFXMLLoader.load("/fxml/books.fxml", getStage());
         Scene scene = new Scene((Parent) booksController.getView());
         super.getStage().setScene(scene);
     }
@@ -72,5 +72,14 @@ public class LoginController extends AbstractController {
     @Override
     public void setView(Node view) {
         super.setView(view);
+    }
+
+    public void resetInfo() {
+        userConfig.setUser(null);
+        userConfig.setNickname(null);
+        userConfig.setPassword(null);
+
+        Scene scene = this.getView().getScene();
+        super.getStage().setScene(scene);
     }
 }

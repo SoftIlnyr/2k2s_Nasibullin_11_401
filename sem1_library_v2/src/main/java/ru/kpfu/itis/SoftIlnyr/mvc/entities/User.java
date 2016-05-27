@@ -30,6 +30,7 @@ public class User implements UserDetails{
     private String avatar;
     private String email;
     private String role;
+    @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
     private List<Talon> talons;
 
     @Id

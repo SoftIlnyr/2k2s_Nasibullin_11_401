@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ru.kpfu.itis.SoftIlnyr.controllers.BooksController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ru.kpfu.itis.SoftIlnyr.controllers.ProfileController">
   <children>
     <TableView fx:id="table" editable="true" prefHeight="400.0" prefWidth="600.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
       <columnResizePolicy>
@@ -15,20 +15,14 @@
     </TableView>
     <HBox alignment="CENTER_LEFT" layoutX="0.0" layoutY="0.0" prefHeight="50.0" prefWidth="800.0">
       <children>
-        <TextField prefWidth="200.0" promptText="Введите название книги">
+        <Button onAction="#toBooks" mnemonicParsing="false" text="Книги">
           <HBox.margin>
-            <Insets left="10.0" fx:id="x1" />
-          </HBox.margin>
-        </TextField>
-        <Button mnemonicParsing="false" text="Поиск" HBox.margin="$x1" />
-        <Button mnemonicParsing="false" text="Профиль" onAction="#toProfile">
-          <HBox.margin>
-            <Insets left="380.0" />
+            <Insets left="10.0" />
           </HBox.margin>
         </Button>
         <Button mnemonicParsing="false" onAction="#logout" text="Выход">
           <HBox.margin>
-            <Insets left="10.0" fx:id="x1" />
+            <Insets left="670.0" />
           </HBox.margin>
         </Button>
       </children>

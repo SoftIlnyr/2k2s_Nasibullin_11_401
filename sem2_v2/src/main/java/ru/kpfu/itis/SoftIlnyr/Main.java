@@ -15,9 +15,12 @@ import ru.kpfu.itis.SoftIlnyr.controllers.LoginController;
 @org.springframework.stereotype.Controller
 public class Main extends Application {
 
+    @Autowired
+    LoginController loginController;
+
     @Override
     public void start(Stage primaryStage) throws Exception {
-        LoginController loginController = (LoginController) SpringFXMLLoader.load("/fxml/login.fxml", primaryStage);
+        loginController = (LoginController) SpringFXMLLoader.load("/fxml/login.fxml", primaryStage);
         loginController.setStage(primaryStage);
         Scene scene = new Scene((Parent) loginController.getView());
         primaryStage.setScene(scene);

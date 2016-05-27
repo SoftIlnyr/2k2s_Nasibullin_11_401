@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ru.kpfu.itis.SoftIlnyr.controllers.OrderController">
+  <children>
+    <HBox alignment="CENTER_LEFT" layoutX="0.0" layoutY="0.0" prefHeight="50.0" prefWidth="800.0">
+      <children>
+        <Button mnemonicParsing="false" onAction="#backToBooks" text="Назад">
+          <HBox.margin>
+            <Insets left="10.0" fx:id="x1" />
+          </HBox.margin>
+        </Button>
+        <Button onAction="#toProfile" mnemonicParsing="false" text="Профиль">
+          <HBox.margin>
+            <Insets left="580.0" />
+          </HBox.margin>
+        </Button>
+        <Button mnemonicParsing="false" onAction="#logout" text="Выход">
+          <HBox.margin>
+            <Insets left="10.0" right="10.0" />
+          </HBox.margin>
+        </Button>
+      </children>
+    </HBox>
+    <ComboBox fx:id="libraries" editable="false" layoutX="250.0" layoutY="242.0" prefHeight="25.0" prefWidth="300.0" promptText="Библиотека">
+      <items>
+        <FXCollections fx:factory="observableArrayList" />
+      </items>
+    </ComboBox>
+    <TextField fx:id="period" layoutX="250.0" layoutY="277.0" prefHeight="25.0" prefWidth="300.0" promptText="Период (дней)" />
+    <Button layoutX="482.0" layoutY="311.0" mnemonicParsing="false" onAction="#doOrder" text="Заказать" />
+    <Label fx:id="bookTitle" alignment="CENTER" layoutX="150.0" layoutY="211.0" prefHeight="25.0" prefWidth="500.0" textAlignment="CENTER">
+      <font>
+        <Font name="Microsoft Sans Serif" size="16.0" />
+      </font>
+    </Label>
+  </children>
+</AnchorPane>
