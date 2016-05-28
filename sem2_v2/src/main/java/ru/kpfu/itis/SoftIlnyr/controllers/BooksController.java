@@ -10,10 +10,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -69,7 +66,6 @@ public class BooksController extends AbstractController {
         httpMessageConverters.add(new MappingJackson2HttpMessageConverter());
         restTemplate.setMessageConverters(httpMessageConverters);
         Book[] books = restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<Object>(userConfig.createHeaders()), Book[].class).getBody();
-        System.out.println(books);
 
         ObservableList<Book> data = FXCollections.observableArrayList(books);
 
@@ -80,14 +76,19 @@ public class BooksController extends AbstractController {
                     Book book = row.getItem();
                     orderController = (OrderController) SpringFXMLLoader.load("/fxml/order.fxml", getStage());
                     orderController.setBook(book);
-                    ArrayList<String> libraries = new ArrayList<>();
+                    ArrayList<Library> libraries = new ArrayList<>();
                     for (Presence presence : book.getPresence()) {
                         Library library = presence.getLibrary();
                         if (!libraries.contains(library)) {
-                            libraries.add(library.getId() + " - " + library.getName());
+                            libraries.add(library);
                         }
                     }
-                    ObservableList<String> list = FXCollections.observableList(libraries);
+                    ArrayList<String> libraryNames = new ArrayList<String>();
+                    for (Library library : libraries) {
+                        libraryNames.add(library.getId() + " - " + library.getName());
+
+                    }
+                    ObservableList<String> list = FXCollections.observableList(libraryNames);
                     orderController.libraries.setItems(list);
                     orderController.bookTitle.setText(book.getTitle());
                     Scene scene = new Scene((Parent) orderController.getView());
@@ -141,5 +142,15 @@ public class BooksController extends AbstractController {
             Scene scene = profileController.getView().getScene();
             super.getStage().setScene(scene);
         }
+    }
+
+    private class LibraryListCell extends ListCell<Library> {
+        @Override protected void updateItem(Library item, boolean empty) {
+            super.updateItem(item, empty);
+            if (item != null) {
+                setText(item.getName());
+            }
+        }
+
     }
 }

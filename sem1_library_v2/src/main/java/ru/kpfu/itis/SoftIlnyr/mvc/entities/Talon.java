@@ -16,7 +16,7 @@ public class Talon {
     private int id;
     private int period;
     private String status;
-        @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
+    @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
     private Book book;
     @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
     private Library library;

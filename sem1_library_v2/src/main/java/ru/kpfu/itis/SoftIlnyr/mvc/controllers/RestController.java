@@ -1,15 +1,15 @@
 package ru.kpfu.itis.SoftIlnyr.mvc.controllers;
 
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import ru.kpfu.itis.SoftIlnyr.mvc.entities.*;
 import ru.kpfu.itis.SoftIlnyr.mvc.services.INTERFACES.BooksService;
+import ru.kpfu.itis.SoftIlnyr.mvc.services.INTERFACES.TalonsService;
 import ru.kpfu.itis.SoftIlnyr.mvc.services.INTERFACES.UsersService;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 
@@ -24,6 +24,9 @@ public class RestController {
 
     @Autowired
     UsersService usersService;
+
+    @Autowired
+    TalonsService talonsService;
 
     @RequestMapping(value = "/info")
     public @ResponseBody List<Book> getInfo() {
@@ -43,13 +46,19 @@ public class RestController {
     }
 
     @RequestMapping(value = "/order", method = RequestMethod.POST)
-    public void makeOrder(@RequestParam("book") int book, @RequestParam("library") int library, @RequestParam("period") int period, Principal principal) {
-        if (principal == null) {
-            return;
-        }
+    public User makeOrder(@RequestBody Talon talon) {
+//        System.out.println(body);
+//        Talon talon = null;
+//        try {
+//            talon = new ObjectMapper().readValue(body, Talon.class);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        System.out.println(talon.getUser().getNickname());
+        talon.setStatus("waiting");
 
-        System.out.println(book + ":" + library + ":" + period);
-        return;
-
+        talonsService.add(talon);
+        User user = usersService.findById(talon.getUser().getId());
+        return user;
     }
 }
